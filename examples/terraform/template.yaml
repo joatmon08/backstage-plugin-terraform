@@ -1,0 +1,142 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
+apiVersion: scaffolder.backstage.io/v1beta3
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
+kind: Template
+metadata:
+  name: terraform-template
+  title: Example Terraform Template
+  description: An example template for the scaffolder that creates infrastructure with Terraform
+spec:
+  owner: user:guest
+  type: service
+
+  # These parameters are used to generate the input form in the frontend, and are
+  # used to gather input data for the execution of the template.
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+        - description
+        - location
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+        description:
+          title: Description
+          type: string
+          description: A description for the component
+        location:
+          title: Location
+          type: string
+          description: Region hosting the component
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+    - title: Customize your infrastructure
+      properties:
+        organization:
+          title: Terraform Organization
+          type: string
+          description: Organization for Terraform
+          default: backstage-testing
+        secondHello:
+          title: Second Hello
+          type: string
+          description: A second individual to say hello
+          default: Backstage
+
+  # These steps are executed in the scaffolder backend, using data that we gathered
+  # via the parameters above.
+  steps:
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:template
+      input:
+        url: ./content
+        values:
+          name: ${{ parameters.name }}
+          description: ${{ parameters.description }}
+          organization: ${{ parameters.organization }}
+          project: ${{ parameters.location }}
+          secondHello: ${{ parameters.secondHello }}
+
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: This is ${{ parameters.name }}
+        repoUrl: ${{ parameters.repoUrl }}
+
+    - id: terraform-project
+      name: Create Terraform Project
+      action: terraform:project:create
+      input:
+        organization: ${{ parameters.organization }}
+        name: ${{ parameters.location }}
+
+    - id: terraform-workspace
+      name: Create Terraform Workspace
+      action: terraform:workspace:create
+      input:
+        organization: ${{ parameters.organization }}
+        project: ${{ steps['terraform-project'].output.name }}
+        name: ${{ parameters.name }}
+        vcsSourceProvider: 'github'
+        vcsOwner: ${{ (parameters.repoUrl | parseRepoUrl).owner }}
+        vcsRepo: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
+        workingDirectory: 'infrastructure'
+
+    - id: terraform-variables
+      name: Create Terraform Variables
+      action: terraform:variables:create
+      input:
+        workspaceID: ${{ steps['terraform-workspace'].output.id }}
+        variables:
+          - key: second_hello
+            value: ${{ parameters.secondHello }}
+            description: 'A second hello to say'
+            category: terraform
+          - key: secret_key
+            value: 'some-secret-key-from-output-on-another-step'
+            description: 'An example of a sensitive variable passed to Terraform'
+            category: terraform
+            sensitive: true
+
+    - id: terraform-run
+      name: Create Terraform Run
+      action: terraform:run:create
+      input:
+        workspaceID: ${{ steps['terraform-workspace'].output.id }}
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}
+      - title: Terraform Workspace
+        url: ${{ steps['terraform-workspace'].output.url }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps['register'].output.entityRef }}

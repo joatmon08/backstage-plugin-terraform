@@ -1,0 +1,160 @@
+{
+  "data": {
+    "id": "ws-H8yvfX7iB2ni9wkk",
+    "type": "workspaces",
+    "attributes": {
+      "allow-destroy-plan": true,
+      "auto-apply": false,
+      "auto-destroy-at": null,
+      "created-at": "2021-01-20T14:27:07.413Z",
+      "environment": "default",
+      "locked": false,
+      "name": "rosemary-terraform-aws-listener-rule-unit-tests",
+      "queue-all-runs": false,
+      "speculative-enabled": true,
+      "structured-run-output-enabled": false,
+      "terraform-version": "1.0.5",
+      "working-directory": "test",
+      "global-remote-state": true,
+      "updated-at": "2021-08-25T21:15:55.867Z",
+      "resource-count": 0,
+      "apply-duration-average": 62000,
+      "plan-duration-average": 20000,
+      "policy-check-failures": 0,
+      "run-failures": 7,
+      "workspace-kpis-runs-count": 30,
+      "latest-change-at": "2021-08-25T21:15:54.414Z",
+      "operations": true,
+      "execution-mode": "remote",
+      "vcs-repo": null,
+      "vcs-repo-identifier": null,
+      "permissions": {
+        "can-update": true,
+        "can-destroy": true,
+        "can-queue-run": true,
+        "can-read-variable": true,
+        "can-update-variable": true,
+        "can-read-state-versions": true,
+        "can-read-state-outputs": true,
+        "can-create-state-versions": true,
+        "can-queue-apply": true,
+        "can-lock": true,
+        "can-unlock": true,
+        "can-force-unlock": true,
+        "can-read-settings": true,
+        "can-manage-tags": true,
+        "can-manage-run-tasks": true,
+        "can-force-delete": true,
+        "can-manage-assessments": true,
+        "can-read-assessment-results": true,
+        "can-queue-destroy": true
+      },
+      "actions": {
+        "is-destroyable": true
+      },
+      "description": "This workspace includes a perpetual Sentinel demonstration for customer reference. It runs unit tests against a Terraform module.",
+      "file-triggers-enabled": true,
+      "trigger-prefixes": [],
+      "trigger-patterns": [],
+      "assessments-enabled": false,
+      "last-assessment-result-at": null,
+      "source": "tfe-ui",
+      "source-name": null,
+      "source-url": null,
+      "tag-names": ["nia"]
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "id": "hashicorp-team-da-beta",
+          "type": "organizations"
+        }
+      },
+      "current-run": {
+        "data": {
+          "id": "run-4KGb9N6MFk4ZMKB3",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-4KGb9N6MFk4ZMKB3"
+        }
+      },
+      "latest-run": {
+        "data": {
+          "id": "run-4KGb9N6MFk4ZMKB3",
+          "type": "runs"
+        },
+        "links": {
+          "related": "/api/v2/runs/run-4KGb9N6MFk4ZMKB3"
+        }
+      },
+      "outputs": {
+        "data": [],
+        "links": {
+          "related": "/api/v2/workspaces/ws-H8yvfX7iB2ni9wkk/current-state-version-outputs"
+        }
+      },
+      "remote-state-consumers": {
+        "links": {
+          "related": "/api/v2/workspaces/ws-H8yvfX7iB2ni9wkk/relationships/remote-state-consumers"
+        }
+      },
+      "current-state-version": {
+        "data": {
+          "id": "sv-PDK8MLHas3uueSCd",
+          "type": "state-versions"
+        },
+        "links": {
+          "related": "/api/v2/workspaces/ws-H8yvfX7iB2ni9wkk/current-state-version"
+        }
+      },
+      "current-configuration-version": {
+        "data": {
+          "id": "cv-XwLmAVXDM5xnzAii",
+          "type": "configuration-versions"
+        },
+        "links": {
+          "related": "/api/v2/configuration-versions/cv-XwLmAVXDM5xnzAii"
+        }
+      },
+      "agent-pool": {
+        "data": null
+      },
+      "readme": {
+        "data": {
+          "id": "1690",
+          "type": "workspace-readme"
+        }
+      },
+      "project": {
+        "data": {
+          "id": "prj-M8nFRmD5QQBUmNJF",
+          "type": "projects"
+        }
+      },
+      "current-assessment-result": {
+        "data": null
+      },
+      "vars": {
+        "data": [
+          {
+            "id": "var-eLdVp6Q8vNssGMRx",
+            "type": "vars"
+          },
+          {
+            "id": "var-5k58oiEjW2LLaTeZ",
+            "type": "vars"
+          },
+          {
+            "id": "var-yTt5QXtX3VdsU2N6",
+            "type": "vars"
+          }
+        ]
+      }
+    },
+    "links": {
+      "self": "/api/v2/organizations/hashicorp-team-da-beta/workspaces/rosemary-terraform-aws-listener-rule-unit-tests",
+      "self-html": "/app/hashicorp-team-da-beta/workspaces/rosemary-terraform-aws-listener-rule-unit-tests"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.name | dump }}
+  description: ${{values.description | dump}}
+  annotations:
+    terraform.io/organization: "${{ values.organization }}"
+    terraform.io/project: "${{ values.location }}"
+    terraform.io/workspace: "${{ values.name }}"
+spec:
+  type: service
+  owner: user:guest
+  lifecycle: experimental

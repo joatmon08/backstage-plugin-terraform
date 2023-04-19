@@ -1,0 +1,939 @@
+{
+  "data": {
+    "id": "sv-2CjUBMNNN6ooWBgq",
+    "type": "state-versions",
+    "attributes": {
+      "created-at": "2022-10-05T12:51:00.529Z",
+      "size": 35949,
+      "hosted-state-download-url": "https://archivist.terraform.io/v1/object/dmF1bHQ6djI6Y1dzMkQrRWtBdkR5RVNjY0Nzd3pvUW9GWUhmKzRIMWUybUJFUFNOTGhHTElmTE43dXFaZ2QzMTN2NlBSK1lyQU4xYklzeGlVM0FvMVM3MUZwZzhmUFVTSlVJRG52bFkyVTZOTU1hT0ZPZlJuMWxGaC9JemRQS1NlTDA2anBDVFBzU1l6UkRmS3BDREM0V3BZbDZseklPVmI1cHhsV3ZIcW1CSmZhN2c2U0NMS2I5M0JmU2kzUTd6VkhscE55Mk9QRFV5QVlzSjNuS3IvMjN4MVJETFZKWlFGRHlKU3BkL2xIbDlTSkZGajREZmNEU0RtMnlOUDl4dG9kaUpubGx0Wlk3RDAwRGE5V3gvUXVkUkY5RFVNdmpCNXJTMStzL29LYTdTaEpqMzVrdmJJOU8xVTVrQ0gvQzA4aUxyOEk2MUpRRE0xT00rdCsvSGd0U3Bsb05Jc3NESHlobmx4ZWlEZ091VGlWTFZzWjdIS1liOGdyZ1kvTVhyeHdZcXpoaVBTdGVndUx4RlhEc1Zxa3hXa1B4Y0ZnS0RxTzU1ZzllMD0",
+      "hosted-json-state-download-url": "https://archivist.terraform.io/v1/object/dmF1bHQ6djI6eFdPOHpXbmtSM295Q0tJWDlVVVE0clQwYVk1Y2p4aU84a3ZTYkdHbHdEaE10QlkwdGhpQ1ZFNWphWTJJYVpmeXBKeElsejVkblVoNkZVRU9FT1M2THJmVktQSWNSb3dHZWxDK09wME5EYTd5bDlyME1YZjJIYmdzaXl2OW5NM0Z0M3ZuTlgyL0ZCSUdPNFpGd3V1aWNIUEl2Nnp6T0t5SHowb3k5R1o2eDh6Y1l6d1VwZVdyVlRkNGNYbkJLUGlMVW10eHFzYlIzRUxIYlhwRTBCT0JCQmFqbWMrVXNIeW5iZ0pKTVlDWWZEWWk3U0twRXpCb2pvQ1pJalc1dDZjR3g3OHdxSnJ2aitwS0JId0hMOTRadEdoazFoTTI4M3E0d3ZhclRkUGN3ZjN6bzhmd1BoakdBS3ErY1hKblpTa1pjU1RpVWM3N0lhd2tFL3ptNGo2Yyt4eHQzdmJjbVA0aC9JajJJTlpZbE40cTBxZlorWlpPOTV6S1ZDUzNoKytTZkQwWEpOd0N4aGVwVXlzU3lQOCt1M2V3UzN5RU5Dbz0",
+      "modules": {
+        "root": {
+          "random_pet": 1,
+          "aws_db_instance": 1,
+          "random_password": 2,
+          "aws_security_group": 1,
+          "data.aws_eks_cluster": 1,
+          "data.aws_eks_cluster_auth": 1,
+          "data.aws_availability_zones": 1,
+          "hcp_consul_cluster_root_token": 1,
+          "hcp_vault_cluster_admin_token": 1
+        },
+        "root.eks": {
+          "data.http": 1,
+          "aws_iam_role": 2,
+          "aws_iam_policy": 2,
+          "aws_eks_cluster": 1,
+          "aws_security_group": 2,
+          "data.aws_partition": 1,
+          "aws_security_group_rule": 6,
+          "data.aws_caller_identity": 1,
+          "data.aws_iam_policy_document": 4,
+          "aws_iam_role_policy_attachment": 8
+        },
+        "root.hcp": {
+          "hcp_hvn": 1,
+          "aws_route": 4,
+          "hcp_hvn_route": 1,
+          "data.aws_region": 1,
+          "hcp_vault_cluster": 1,
+          "hcp_consul_cluster": 1,
+          "aws_security_group_rule": 2,
+          "hcp_aws_network_peering": 1,
+          "aws_vpc_peering_connection_accepter": 1
+        },
+        "root.vpc": {
+          "aws_eip": 3,
+          "aws_vpc": 1,
+          "aws_route": 4,
+          "aws_subnet": 9,
+          "aws_nat_gateway": 3,
+          "aws_route_table": 4,
+          "aws_db_subnet_group": 1,
+          "aws_internet_gateway": 1,
+          "aws_default_route_table": 1,
+          "aws_route_table_association": 9
+        },
+        "root.boundary": {
+          "aws_lb": 1,
+          "aws_kms_key": 3,
+          "aws_iam_role": 1,
+          "aws_instance": 2,
+          "data.aws_ami": 1,
+          "aws_db_instance": 1,
+          "aws_lb_listener": 1,
+          "aws_security_group": 4,
+          "aws_db_subnet_group": 1,
+          "aws_iam_role_policy": 2,
+          "aws_lb_target_group": 1,
+          "aws_security_group_rule": 10,
+          "aws_iam_instance_profile": 1,
+          "aws_lb_target_group_attachment": 1
+        },
+        "root.eks.fargate": {
+          "data.aws_partition": 1
+        },
+        "root.eks.node-groups": {
+          "aws_eks_node_group": 1
+        }
+      },
+      "providers": {
+        "provider[\"registry.terraform.io/hashicorp/aws\"]": {
+          "aws_lb": 1,
+          "aws_eip": 3,
+          "aws_vpc": 1,
+          "aws_route": 8,
+          "aws_subnet": 9,
+          "aws_kms_key": 3,
+          "aws_iam_role": 3,
+          "aws_instance": 2,
+          "data.aws_ami": 1,
+          "aws_iam_policy": 2,
+          "aws_db_instance": 2,
+          "aws_eks_cluster": 1,
+          "aws_lb_listener": 1,
+          "aws_nat_gateway": 3,
+          "aws_route_table": 4,
+          "data.aws_region": 1,
+          "aws_eks_node_group": 1,
+          "aws_security_group": 7,
+          "data.aws_partition": 2,
+          "aws_db_subnet_group": 2,
+          "aws_iam_role_policy": 2,
+          "aws_lb_target_group": 1,
+          "aws_internet_gateway": 1,
+          "data.aws_eks_cluster": 1,
+          "aws_default_route_table": 1,
+          "aws_security_group_rule": 18,
+          "aws_iam_instance_profile": 1,
+          "data.aws_caller_identity": 1,
+          "data.aws_eks_cluster_auth": 1,
+          "aws_route_table_association": 9,
+          "data.aws_availability_zones": 1,
+          "data.aws_iam_policy_document": 4,
+          "aws_iam_role_policy_attachment": 8,
+          "aws_lb_target_group_attachment": 1,
+          "aws_vpc_peering_connection_accepter": 1
+        },
+        "provider[\"registry.terraform.io/hashicorp/hcp\"]": {
+          "hcp_hvn": 1,
+          "hcp_hvn_route": 1,
+          "hcp_vault_cluster": 1,
+          "hcp_consul_cluster": 1,
+          "hcp_aws_network_peering": 1,
+          "hcp_consul_cluster_root_token": 1,
+          "hcp_vault_cluster_admin_token": 1
+        },
+        "provider[\"registry.terraform.io/hashicorp/random\"]": {
+          "random_pet": 1,
+          "random_password": 2
+        },
+        "provider[\"registry.terraform.io/terraform-aws-modules/http\"]": {
+          "data.http": 1
+        }
+      },
+      "resources": [
+        {
+          "name": "available",
+          "type": "data.aws_availability_zones",
+          "count": 1,
+          "module": "root",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster",
+          "type": "data.aws_eks_cluster",
+          "count": 1,
+          "module": "root",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster",
+          "type": "data.aws_eks_cluster_auth",
+          "count": 1,
+          "module": "root",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "products",
+          "type": "aws_db_instance",
+          "count": 1,
+          "module": "root",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "database",
+          "type": "aws_security_group",
+          "count": 1,
+          "module": "root",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "token",
+          "type": "hcp_consul_cluster_root_token",
+          "count": 1,
+          "module": "root",
+          "provider": "provider[\"registry.terraform.io/hashicorp/hcp\"]"
+        },
+        {
+          "name": "cluster",
+          "type": "hcp_vault_cluster_admin_token",
+          "count": 1,
+          "module": "root",
+          "provider": "provider[\"registry.terraform.io/hashicorp/hcp\"]"
+        },
+        {
+          "name": "boundary_database",
+          "type": "random_password",
+          "count": 1,
+          "module": "root",
+          "provider": "provider[\"registry.terraform.io/hashicorp/random\"]"
+        },
+        {
+          "name": "database",
+          "type": "random_password",
+          "count": 1,
+          "module": "root",
+          "provider": "provider[\"registry.terraform.io/hashicorp/random\"]"
+        },
+        {
+          "name": "database",
+          "type": "random_pet",
+          "count": 1,
+          "module": "root",
+          "provider": "provider[\"registry.terraform.io/hashicorp/random\"]"
+        },
+        {
+          "name": "ubuntu",
+          "type": "data.aws_ami",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "boundary",
+          "type": "aws_db_instance",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "boundary",
+          "type": "aws_db_subnet_group",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "boundary",
+          "type": "aws_iam_instance_profile",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "boundary",
+          "type": "aws_iam_role",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "boundary",
+          "type": "aws_iam_role_policy",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "boundary_host_catalog",
+          "type": "aws_iam_role_policy",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "controller",
+          "type": "aws_instance",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "worker",
+          "type": "aws_instance",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "recovery",
+          "type": "aws_kms_key",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "root",
+          "type": "aws_kms_key",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "worker_auth",
+          "type": "aws_kms_key",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "controller",
+          "type": "aws_lb",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "controller",
+          "type": "aws_lb_listener",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "controller",
+          "type": "aws_lb_target_group",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "controller",
+          "type": "aws_lb_target_group_attachment",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "controller",
+          "type": "aws_security_group",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "controller_lb",
+          "type": "aws_security_group",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "db",
+          "type": "aws_security_group",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "worker",
+          "type": "aws_security_group",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "allow_9200",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "allow_9200_controller",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "allow_9201_controller",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "allow_9201_worker",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "allow_9202_worker",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "allow_controller_sg_to_db",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "allow_egress_controller",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "allow_egress_db",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "allow_egress_worker",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "lb_egress",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.boundary",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "current",
+          "type": "data.aws_caller_identity",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_assume_role_policy",
+          "type": "data.aws_iam_policy_document",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_deny_log_group",
+          "type": "data.aws_iam_policy_document",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_elb_sl_role_creation",
+          "type": "data.aws_iam_policy_document",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "workers_assume_role_policy",
+          "type": "data.aws_iam_policy_document",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "current",
+          "type": "data.aws_partition",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "wait_for_cluster",
+          "type": "data.http",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/terraform-aws-modules/http\"]"
+        },
+        {
+          "name": "this",
+          "type": "aws_eks_cluster",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_deny_log_group",
+          "type": "aws_iam_policy",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_elb_sl_role_creation",
+          "type": "aws_iam_policy",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster",
+          "type": "aws_iam_role",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "workers",
+          "type": "aws_iam_role",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_AmazonEKSClusterPolicy",
+          "type": "aws_iam_role_policy_attachment",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_AmazonEKSServicePolicy",
+          "type": "aws_iam_role_policy_attachment",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_AmazonEKSVPCResourceControllerPolicy",
+          "type": "aws_iam_role_policy_attachment",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_deny_log_group",
+          "type": "aws_iam_role_policy_attachment",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_elb_sl_role_creation",
+          "type": "aws_iam_role_policy_attachment",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "workers_AmazonEC2ContainerRegistryReadOnly",
+          "type": "aws_iam_role_policy_attachment",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "workers_AmazonEKSWorkerNodePolicy",
+          "type": "aws_iam_role_policy_attachment",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "workers_AmazonEKS_CNI_Policy",
+          "type": "aws_iam_role_policy_attachment",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster",
+          "type": "aws_security_group",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "workers",
+          "type": "aws_security_group",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_egress_internet",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "cluster_https_worker_ingress",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "workers_egress_internet",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "workers_ingress_cluster",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "workers_ingress_cluster_https",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "workers_ingress_self",
+          "type": "aws_security_group_rule",
+          "count": 1,
+          "module": "root.eks",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "current",
+          "type": "data.aws_partition",
+          "count": 1,
+          "module": "root.eks.fargate",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "workers",
+          "type": "aws_eks_node_group",
+          "count": 1,
+          "module": "root.eks.node_groups",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "current",
+          "type": "data.aws_region",
+          "count": 1,
+          "module": "root.hcp",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "hvn",
+          "type": "aws_route",
+          "count": 4,
+          "module": "root.hcp",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "hcp_consul",
+          "type": "aws_security_group_rule",
+          "count": 2,
+          "module": "root.hcp",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "hvn",
+          "type": "aws_vpc_peering_connection_accepter",
+          "count": 1,
+          "module": "root.hcp",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "peer",
+          "type": "hcp_aws_network_peering",
+          "count": 1,
+          "module": "root.hcp",
+          "provider": "provider[\"registry.terraform.io/hashicorp/hcp\"]"
+        },
+        {
+          "name": "consul",
+          "type": "hcp_consul_cluster",
+          "count": 1,
+          "module": "root.hcp",
+          "provider": "provider[\"registry.terraform.io/hashicorp/hcp\"]"
+        },
+        {
+          "name": "hvn",
+          "type": "hcp_hvn",
+          "count": 1,
+          "module": "root.hcp",
+          "provider": "provider[\"registry.terraform.io/hashicorp/hcp\"]"
+        },
+        {
+          "name": "hvn",
+          "type": "hcp_hvn_route",
+          "count": 1,
+          "module": "root.hcp",
+          "provider": "provider[\"registry.terraform.io/hashicorp/hcp\"]"
+        },
+        {
+          "name": "vault",
+          "type": "hcp_vault_cluster",
+          "count": 1,
+          "module": "root.hcp",
+          "provider": "provider[\"registry.terraform.io/hashicorp/hcp\"]"
+        },
+        {
+          "name": "database",
+          "type": "aws_db_subnet_group",
+          "count": 1,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "default",
+          "type": "aws_default_route_table",
+          "count": 1,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "nat",
+          "type": "aws_eip",
+          "count": 3,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "this",
+          "type": "aws_internet_gateway",
+          "count": 1,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "this",
+          "type": "aws_nat_gateway",
+          "count": 3,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "private_nat_gateway",
+          "type": "aws_route",
+          "count": 3,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "public_internet_gateway",
+          "type": "aws_route",
+          "count": 1,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "private",
+          "type": "aws_route_table",
+          "count": 3,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "public",
+          "type": "aws_route_table",
+          "count": 1,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "database",
+          "type": "aws_route_table_association",
+          "count": 3,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "private",
+          "type": "aws_route_table_association",
+          "count": 3,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "public",
+          "type": "aws_route_table_association",
+          "count": 3,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "database",
+          "type": "aws_subnet",
+          "count": 3,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "private",
+          "type": "aws_subnet",
+          "count": 3,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "public",
+          "type": "aws_subnet",
+          "count": 3,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        },
+        {
+          "name": "this",
+          "type": "aws_vpc",
+          "count": 1,
+          "module": "root.vpc",
+          "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]"
+        }
+      ],
+      "resources-processed": true,
+      "serial": 196,
+      "state-version": 4,
+      "terraform-version": "1.3.1",
+      "vcs-commit-url": "https://github.com/joatmon08/hashicorp-stack-demoapp/commit/85f99125c004a7cd69e887c9c6034c0972028e2d",
+      "vcs-commit-sha": "85f99125c004a7cd69e887c9c6034c0972028e2d"
+    },
+    "relationships": {
+      "run": {
+        "data": {
+          "id": "run-hh3S7yKjZfYd1ofx",
+          "type": "runs"
+        }
+      },
+      "rollback-state-version": {
+        "data": null
+      },
+      "next-state-version": {
+        "data": {
+          "id": "sv-Jv2fdCTRdQn8XfG6",
+          "type": "state-versions"
+        }
+      },
+      "previous-state-version": {
+        "data": {
+          "id": "sv-GMnRddmSXChXcqmM",
+          "type": "state-versions"
+        }
+      },
+      "created-by": {
+        "data": {
+          "id": "user-aAEj9bGMTfD4ucpi",
+          "type": "users"
+        },
+        "links": {
+          "self": "/api/v2/users/user-aAEj9bGMTfD4ucpi",
+          "related": "/api/v2/runs/run-hh3S7yKjZfYd1ofx/created-by"
+        }
+      },
+      "workspace": {
+        "data": {
+          "id": "ws-Mjb4JsG1e4i5dJ7s",
+          "type": "workspaces"
+        }
+      },
+      "outputs": {
+        "data": [
+          {
+            "id": "wsout-NG5Cbqhmz6njT4mB",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-TfXFZwErqDNbTX3b",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-qWoZKyUBFxLpCPt6",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-9RGtrBY152ZWy6z5",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-cSUi37vU4xFZVsBk",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-q9whXcmN9i6EkLyg",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-6Lek1myZ6FUn1hxG",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-ofgzLGNPVS9R9fyk",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-JPaMPSUPD9xsm6E2",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-cYQdtj8XwBLKLQtW",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-W1tga7gBVHQALFth",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-eL3xEX9t2NzCHFkp",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-cULoKWjAx6ShXkEs",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-cUF1YUGaperXFGFQ",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-na5DbdgmSK4bP7Q6",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-psxcKHUq5APWirNC",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-NR7CvYqZSTxcUjhP",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-2WiDbQHK2xV1bSmu",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-3uiFBGv7E74izcSx",
+            "type": "state-version-outputs"
+          },
+          {
+            "id": "wsout-SAw1rwKkTuqRTv8d",
+            "type": "state-version-outputs"
+          }
+        ],
+        "links": {
+          "related": "/api/v2/state-versions/sv-2CjUBMNNN6ooWBgq/outputs"
+        }
+      }
+    },
+    "links": {
+      "self": "/api/v2/state-versions/sv-2CjUBMNNN6ooWBgq"
+    }
+  }
+}

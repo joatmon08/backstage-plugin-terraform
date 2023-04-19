@@ -1,0 +1,44 @@
+[
+  {
+    "id": "wsout-ofgzLGNPVS9R9fyk",
+    "type": "state-version-outputs",
+    "attributes": {
+      "name": "hcp_consul_public_address",
+      "sensitive": false,
+      "type": "string",
+      "value": "https://hound.consul.public.aws.hashicorp.cloud",
+      "detailed-type": "string"
+    },
+    "links": {
+      "self": "/api/v2/state-version-outputs/wsout-ofgzLGNPVS9R9fyk"
+    }
+  },
+  {
+    "id": "wsout-ofgzLGNPVS9R9fyk",
+    "type": "state-version-outputs",
+    "attributes": {
+      "name": "hcp_consul_private_address",
+      "sensitive": false,
+      "type": "string",
+      "value": "https://hound.consul.private.aws.hashicorp.cloud",
+      "detailed-type": "string"
+    },
+    "links": {
+      "self": "/api/v2/state-version-outputs/wsout-ofgzLGNPVS9R9fyk"
+    }
+  },
+  {
+    "id": "wsout-cUF1YUGaperXFGFQ",
+    "type": "state-version-outputs",
+    "attributes": {
+      "name": "hcp_vault_token",
+      "sensitive": true,
+      "type": "string",
+      "value": "example.token",
+      "detailed-type": "string"
+    },
+    "links": {
+      "self": "/api/v2/state-version-outputs/wsout-cUF1YUGaperXFGFQ"
+    }
+  }
+]
