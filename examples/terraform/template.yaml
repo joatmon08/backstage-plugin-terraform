@@ -6,7 +6,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: terraform-template
-  title: Example Terraform Template
+  title: Example Terraform Template for Platform Teams
   description: An example template for the scaffolder that creates infrastructure with Terraform
 spec:
   owner: user:guest
@@ -19,7 +19,8 @@ spec:
       required:
         - name
         - description
-        - location
+        - organization
+        - project
       properties:
         name:
           title: Name
@@ -32,10 +33,14 @@ spec:
           title: Description
           type: string
           description: A description for the component
-        location:
-          title: Location
+        organization:
+          title: Organization
           type: string
-          description: Region hosting the component
+          description: The name of an existing Terraform organization
+        project:
+          title: Project
+          type: string
+          description: The name of a new Terraform project you want to create
     - title: Choose a location
       required:
         - repoUrl
@@ -47,17 +52,12 @@ spec:
           ui:options:
             allowedHosts:
               - github.com
-    - title: Customize your infrastructure
+    - title: Define variables for Terraform
       properties:
-        organization:
-          title: Terraform Organization
-          type: string
-          description: Organization for Terraform
-          default: backstage-testing
         secondHello:
           title: Second Hello
           type: string
-          description: A second individual to say hello
+          description: A variable to pass to the Terraform module, specifically a second greeting
           default: Backstage
 
   # These steps are executed in the scaffolder backend, using data that we gathered
@@ -72,7 +72,7 @@ spec:
           name: ${{ parameters.name }}
           description: ${{ parameters.description }}
           organization: ${{ parameters.organization }}
-          project: ${{ parameters.location }}
+          project: ${{ parameters.project }}
           secondHello: ${{ parameters.secondHello }}
 
     - id: publish
@@ -88,7 +88,7 @@ spec:
       action: terraform:project:create
       input:
         organization: ${{ parameters.organization }}
-        name: ${{ parameters.location }}
+        name: ${{ parameters.project }}
 
     - id: terraform-workspace
       name: Create Terraform Workspace
@@ -100,7 +100,7 @@ spec:
         vcsSourceProvider: 'github'
         vcsOwner: ${{ (parameters.repoUrl | parseRepoUrl).owner }}
         vcsRepo: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
-        workingDirectory: 'infrastructure'
+        vcsAuthUser: ${{ (parameters.repoUrl | parseRepoUrl).owner }}
 
     - id: terraform-variables
       name: Create Terraform Variables
@@ -110,7 +110,7 @@ spec:
         variables:
           - key: second_hello
             value: ${{ parameters.secondHello }}
-            description: 'A second hello to say'
+            description: 'A second hello to add as a greeting'
             category: terraform
           - key: secret_key
             value: 'some-secret-key-from-output-on-another-step'

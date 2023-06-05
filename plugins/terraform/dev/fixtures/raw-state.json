@@ -1,0 +1,1940 @@
+{
+  "format_version": "1.0",
+  "terraform_version": "1.4.0",
+  "values": {
+    "outputs": {
+      "boundary_addr": {
+        "sensitive": false,
+        "value": "https://REDACTED.boundary.hashicorp.cloud",
+        "type": "string"
+      },
+      "boundary_password": {
+        "sensitive": true,
+        "value": "REDACTED",
+        "type": "string"
+      },
+      "boundary_user": {
+        "sensitive": false,
+        "value": "REDACTED",
+        "type": "string"
+      },
+      "vault_namespace": {
+        "sensitive": false,
+        "value": "admin",
+        "type": "string"
+      },
+      "vault_public_address": {
+        "sensitive": false,
+        "value": "https://REDACTED:8200",
+        "type": "string"
+      },
+      "vault_token": {
+        "sensitive": true,
+        "value": "REDACTED",
+        "type": "string"
+      }
+    },
+    "root_module": {
+      "resources": [
+        {
+          "address": "data.aws_availability_zones.available",
+          "mode": "data",
+          "type": "aws_availability_zones",
+          "name": "available",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 0,
+          "values": {
+            "all_availability_zones": null,
+            "exclude_names": null,
+            "exclude_zone_ids": null,
+            "filter": [
+              {
+                "name": "opt-in-status",
+                "values": ["opt-in-not-required"]
+              }
+            ],
+            "group_names": ["us-east-2"],
+            "id": "us-east-2",
+            "names": ["us-east-2a", "us-east-2b", "us-east-2c"],
+            "state": "available",
+            "timeouts": null,
+            "zone_ids": ["use2-az1", "use2-az2", "use2-az3"]
+          },
+          "sensitive_values": {
+            "filter": [
+              {
+                "values": [false]
+              }
+            ],
+            "group_names": [false],
+            "names": [false, false, false],
+            "zone_ids": [false, false, false]
+          }
+        },
+        {
+          "address": "hcp_boundary_cluster.cluster",
+          "mode": "managed",
+          "type": "hcp_boundary_cluster",
+          "name": "cluster",
+          "provider_name": "registry.terraform.io/hashicorp/hcp",
+          "schema_version": 0,
+          "values": {
+            "cluster_id": "incident-as-code",
+            "cluster_url": "https://REDACTED.boundary.hashicorp.cloud",
+            "created_at": "2023-04-04T13:27:58.696Z",
+            "id": "/project/REDACTED/hashicorp.boundary.cluster/incident-as-code",
+            "password": "REDACTED",
+            "state": "STATE_RUNNING",
+            "timeouts": null,
+            "username": "REDACTED"
+          },
+          "sensitive_values": {
+            "password": true
+          },
+          "depends_on": [
+            "random_password.boundary_password",
+            "random_string.boundary_user"
+          ]
+        },
+        {
+          "address": "hcp_hvn.primary",
+          "mode": "managed",
+          "type": "hcp_hvn",
+          "name": "primary",
+          "provider_name": "registry.terraform.io/hashicorp/hcp",
+          "schema_version": 0,
+          "values": {
+            "cidr_block": "172.25.32.0/20",
+            "cloud_provider": "aws",
+            "created_at": "2023-04-04T13:27:59.000Z",
+            "hvn_id": "incident-as-code",
+            "id": "/project/REDACTED/hashicorp.network.hvn/incident-as-code",
+            "organization_id": "REDACTED",
+            "project_id": "REDACTED",
+            "provider_account_id": "468001993716",
+            "region": "us-east-2",
+            "self_link": "/project/REDACTED/hashicorp.network.hvn/incident-as-code",
+            "state": "STABLE",
+            "timeouts": null
+          },
+          "sensitive_values": {}
+        },
+        {
+          "address": "hcp_vault_cluster.primary",
+          "mode": "managed",
+          "type": "hcp_vault_cluster",
+          "name": "primary",
+          "provider_name": "registry.terraform.io/hashicorp/hcp",
+          "schema_version": 0,
+          "values": {
+            "audit_log_config": [],
+            "cloud_provider": "aws",
+            "cluster_id": "incident-as-code",
+            "created_at": "2023-04-04T13:28:52.411Z",
+            "hvn_id": "incident-as-code",
+            "id": "/project/REDACTED/hashicorp.vault.cluster/incident-as-code",
+            "major_version_upgrade_config": [
+              {
+                "maintenance_window_day": "",
+                "maintenance_window_time": "",
+                "upgrade_type": "AUTOMATIC"
+              }
+            ],
+            "metrics_config": [],
+            "min_vault_version": null,
+            "namespace": "admin",
+            "organization_id": "REDACTED",
+            "paths_filter": null,
+            "primary_link": null,
+            "project_id": "REDACTED",
+            "public_endpoint": true,
+            "region": "us-east-2",
+            "self_link": "/project/REDACTED/hashicorp.vault.cluster/incident-as-code",
+            "state": "RUNNING",
+            "tier": "DEV",
+            "timeouts": null,
+            "vault_private_endpoint_url": "https://REDACTED.z1.hashicorp.cloud:8200",
+            "vault_public_endpoint_url": "https://REDACTED.z1.hashicorp.cloud:8200",
+            "vault_version": "v1.12.3"
+          },
+          "sensitive_values": {
+            "audit_log_config": [],
+            "major_version_upgrade_config": [{}],
+            "metrics_config": []
+          },
+          "depends_on": ["hcp_hvn.primary"]
+        },
+        {
+          "address": "hcp_vault_cluster_admin_token.primary",
+          "mode": "managed",
+          "type": "hcp_vault_cluster_admin_token",
+          "name": "primary",
+          "provider_name": "registry.terraform.io/hashicorp/hcp",
+          "schema_version": 0,
+          "values": {
+            "cluster_id": "incident-as-code",
+            "created_at": "2023-04-04T13:34:14Z",
+            "id": "/project/REDACTED/hashicorp.vault.cluster/incident-as-code/token",
+            "timeouts": null,
+            "token": "REDACTED"
+          },
+          "sensitive_values": {},
+          "depends_on": ["hcp_hvn.primary", "hcp_vault_cluster.primary"],
+          "tainted": true
+        },
+        {
+          "address": "random_password.boundary_password",
+          "mode": "managed",
+          "type": "random_password",
+          "name": "boundary_password",
+          "provider_name": "registry.terraform.io/hashicorp/random",
+          "schema_version": 3,
+          "values": {
+            "bcrypt_hash": "REDACTED",
+            "id": "none",
+            "keepers": null,
+            "length": 16,
+            "lower": true,
+            "min_lower": 1,
+            "min_numeric": 1,
+            "min_special": 1,
+            "min_upper": 1,
+            "number": true,
+            "numeric": true,
+            "override_special": "!#$%\u0026*",
+            "result": "REDACTED",
+            "special": true,
+            "upper": true
+          },
+          "sensitive_values": {}
+        },
+        {
+          "address": "random_string.boundary_user",
+          "mode": "managed",
+          "type": "random_string",
+          "name": "boundary_user",
+          "provider_name": "registry.terraform.io/hashicorp/random",
+          "schema_version": 2,
+          "values": {
+            "id": "REDACTED",
+            "keepers": null,
+            "length": 8,
+            "lower": true,
+            "min_lower": 1,
+            "min_numeric": 1,
+            "min_special": 1,
+            "min_upper": 0,
+            "number": true,
+            "numeric": true,
+            "override_special": "-.",
+            "result": "REDACTED",
+            "special": true,
+            "upper": false
+          },
+          "sensitive_values": {}
+        }
+      ],
+      "child_modules": [
+        {
+          "resources": [
+            {
+              "address": "module.aws_hcp_consul.data.aws_region.current",
+              "mode": "data",
+              "type": "aws_region",
+              "name": "current",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "description": "US East (Ohio)",
+                "endpoint": "ec2.us-east-2.amazonaws.com",
+                "id": "us-east-2",
+                "name": "us-east-2"
+              },
+              "sensitive_values": {}
+            },
+            {
+              "address": "module.aws_hcp_consul.data.aws_subnet.selected[0]",
+              "mode": "data",
+              "type": "aws_subnet",
+              "name": "selected",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:subnet/subnet-04928ea07dbfde428",
+                "assign_ipv6_address_on_creation": false,
+                "availability_zone": "us-east-2a",
+                "availability_zone_id": "use2-az1",
+                "available_ip_address_count": 251,
+                "cidr_block": "10.0.0.0/24",
+                "customer_owned_ipv4_pool": "",
+                "default_for_az": false,
+                "enable_dns64": false,
+                "enable_resource_name_dns_a_record_on_launch": false,
+                "enable_resource_name_dns_aaaa_record_on_launch": false,
+                "filter": null,
+                "id": "subnet-04928ea07dbfde428",
+                "ipv6_cidr_block": "",
+                "ipv6_cidr_block_association_id": "",
+                "ipv6_native": false,
+                "map_customer_owned_ip_on_launch": false,
+                "map_public_ip_on_launch": false,
+                "outpost_arn": "",
+                "owner_id": "938765688536",
+                "private_dns_hostname_type_on_launch": "ip-name",
+                "state": "available",
+                "tags": {
+                  "Name": "incident-as-code-private-us-east-2a"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "tags": {}
+              }
+            },
+            {
+              "address": "module.aws_hcp_consul.data.aws_subnet.selected[1]",
+              "mode": "data",
+              "type": "aws_subnet",
+              "name": "selected",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:subnet/subnet-0b66e5c207a810e93",
+                "assign_ipv6_address_on_creation": false,
+                "availability_zone": "us-east-2b",
+                "availability_zone_id": "use2-az2",
+                "available_ip_address_count": 251,
+                "cidr_block": "10.0.1.0/24",
+                "customer_owned_ipv4_pool": "",
+                "default_for_az": false,
+                "enable_dns64": false,
+                "enable_resource_name_dns_a_record_on_launch": false,
+                "enable_resource_name_dns_aaaa_record_on_launch": false,
+                "filter": null,
+                "id": "subnet-0b66e5c207a810e93",
+                "ipv6_cidr_block": "",
+                "ipv6_cidr_block_association_id": "",
+                "ipv6_native": false,
+                "map_customer_owned_ip_on_launch": false,
+                "map_public_ip_on_launch": false,
+                "outpost_arn": "",
+                "owner_id": "938765688536",
+                "private_dns_hostname_type_on_launch": "ip-name",
+                "state": "available",
+                "tags": {
+                  "Name": "incident-as-code-private-us-east-2b"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "tags": {}
+              }
+            },
+            {
+              "address": "module.aws_hcp_consul.data.aws_subnet.selected[2]",
+              "mode": "data",
+              "type": "aws_subnet",
+              "name": "selected",
+              "index": 2,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:subnet/subnet-0d2b44c166f03d606",
+                "assign_ipv6_address_on_creation": false,
+                "availability_zone": "us-east-2c",
+                "availability_zone_id": "use2-az3",
+                "available_ip_address_count": 251,
+                "cidr_block": "10.0.2.0/24",
+                "customer_owned_ipv4_pool": "",
+                "default_for_az": false,
+                "enable_dns64": false,
+                "enable_resource_name_dns_a_record_on_launch": false,
+                "enable_resource_name_dns_aaaa_record_on_launch": false,
+                "filter": null,
+                "id": "subnet-0d2b44c166f03d606",
+                "ipv6_cidr_block": "",
+                "ipv6_cidr_block_association_id": "",
+                "ipv6_native": false,
+                "map_customer_owned_ip_on_launch": false,
+                "map_public_ip_on_launch": false,
+                "outpost_arn": "",
+                "owner_id": "938765688536",
+                "private_dns_hostname_type_on_launch": "ip-name",
+                "state": "available",
+                "tags": {
+                  "Name": "incident-as-code-private-us-east-2c"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "tags": {}
+              }
+            },
+            {
+              "address": "module.aws_hcp_consul.data.aws_vpc.selected",
+              "mode": "data",
+              "type": "aws_vpc",
+              "name": "selected",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:vpc/vpc-09a25bad6f9c9eef0",
+                "cidr_block": "10.0.0.0/16",
+                "cidr_block_associations": [
+                  {
+                    "association_id": "vpc-cidr-assoc-0f8653d0500724ce3",
+                    "cidr_block": "10.0.0.0/16",
+                    "state": "associated"
+                  }
+                ],
+                "default": false,
+                "dhcp_options_id": "dopt-56bd073d",
+                "enable_dns_hostnames": true,
+                "enable_dns_support": true,
+                "enable_network_address_usage_metrics": false,
+                "filter": null,
+                "id": "vpc-09a25bad6f9c9eef0",
+                "instance_tenancy": "default",
+                "ipv6_association_id": "",
+                "ipv6_cidr_block": "",
+                "main_route_table_id": "rtb-0a5f32c766bbd2708",
+                "owner_id": "938765688536",
+                "state": null,
+                "tags": {
+                  "Name": "incident-as-code"
+                },
+                "timeouts": null
+              },
+              "sensitive_values": {
+                "cidr_block_associations": [{}],
+                "tags": {}
+              }
+            },
+            {
+              "address": "module.aws_hcp_consul.aws_route.peering[0]",
+              "mode": "managed",
+              "type": "aws_route",
+              "name": "peering",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "carrier_gateway_id": "",
+                "core_network_arn": "",
+                "destination_cidr_block": "172.25.32.0/20",
+                "destination_ipv6_cidr_block": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "",
+                "id": "r-rtb-066fa52f11244dd1b4086794601",
+                "instance_id": "",
+                "instance_owner_id": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "",
+                "network_interface_id": "",
+                "origin": "CreateRoute",
+                "route_table_id": "rtb-066fa52f11244dd1b",
+                "state": "active",
+                "timeouts": null,
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": "pcx-0f4b21740d1a4cb80"
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "hcp_hvn.primary",
+                "module.aws_hcp_consul.aws_vpc_peering_connection_accepter.peer",
+                "module.aws_hcp_consul.data.aws_region.current",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.aws_hcp_consul.hcp_aws_network_peering.default",
+                "module.vpc.aws_route_table.private",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.aws_route.peering[1]",
+              "mode": "managed",
+              "type": "aws_route",
+              "name": "peering",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "carrier_gateway_id": "",
+                "core_network_arn": "",
+                "destination_cidr_block": "172.25.32.0/20",
+                "destination_ipv6_cidr_block": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "",
+                "id": "r-rtb-07075e7b7c4c1ce894086794601",
+                "instance_id": "",
+                "instance_owner_id": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "",
+                "network_interface_id": "",
+                "origin": "CreateRoute",
+                "route_table_id": "rtb-07075e7b7c4c1ce89",
+                "state": "active",
+                "timeouts": null,
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": "pcx-0f4b21740d1a4cb80"
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "hcp_hvn.primary",
+                "module.aws_hcp_consul.aws_vpc_peering_connection_accepter.peer",
+                "module.aws_hcp_consul.data.aws_region.current",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.aws_hcp_consul.hcp_aws_network_peering.default",
+                "module.vpc.aws_route_table.private",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.aws_route.peering[2]",
+              "mode": "managed",
+              "type": "aws_route",
+              "name": "peering",
+              "index": 2,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "carrier_gateway_id": "",
+                "core_network_arn": "",
+                "destination_cidr_block": "172.25.32.0/20",
+                "destination_ipv6_cidr_block": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "",
+                "id": "r-rtb-0e54cceb83d10056a4086794601",
+                "instance_id": "",
+                "instance_owner_id": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "",
+                "network_interface_id": "",
+                "origin": "CreateRoute",
+                "route_table_id": "rtb-0e54cceb83d10056a",
+                "state": "active",
+                "timeouts": null,
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": "pcx-0f4b21740d1a4cb80"
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "hcp_hvn.primary",
+                "module.aws_hcp_consul.aws_vpc_peering_connection_accepter.peer",
+                "module.aws_hcp_consul.data.aws_region.current",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.aws_hcp_consul.hcp_aws_network_peering.default",
+                "module.vpc.aws_route_table.private",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.aws_security_group.hcp_consul[0]",
+              "mode": "managed",
+              "type": "aws_security_group",
+              "name": "hcp_consul",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 1,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:security-group/sg-0910beaa2fe6d4e14",
+                "description": "HCP Consul security group",
+                "egress": [],
+                "id": "sg-0910beaa2fe6d4e14",
+                "ingress": [],
+                "name": "hcp_consul20230404132810699700000001",
+                "name_prefix": "hcp_consul",
+                "owner_id": "938765688536",
+                "revoke_rules_on_delete": false,
+                "tags": null,
+                "tags_all": {},
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "egress": [],
+                "ingress": [],
+                "tags_all": {}
+              },
+              "depends_on": [
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.vpc.aws_vpc.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.aws_security_group_rule.allow_all_egress[0]",
+              "mode": "managed",
+              "type": "aws_security_group_rule",
+              "name": "allow_all_egress",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 2,
+              "values": {
+                "cidr_blocks": ["0.0.0.0/0"],
+                "description": "Allow egress access to the Internet.",
+                "from_port": 0,
+                "id": "sgrule-3515152557",
+                "ipv6_cidr_blocks": null,
+                "prefix_list_ids": null,
+                "protocol": "-1",
+                "security_group_id": "sg-0910beaa2fe6d4e14",
+                "security_group_rule_id": "sgr-0de40ccf38866c7ce",
+                "self": false,
+                "source_security_group_id": null,
+                "timeouts": null,
+                "to_port": 0,
+                "type": "egress"
+              },
+              "sensitive_values": {
+                "cidr_blocks": [false]
+              },
+              "depends_on": [
+                "module.aws_hcp_consul.aws_security_group.hcp_consul",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.vpc.aws_vpc.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.aws_security_group_rule.allow_lan_consul_gossip[0]",
+              "mode": "managed",
+              "type": "aws_security_group_rule",
+              "name": "allow_lan_consul_gossip",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 2,
+              "values": {
+                "cidr_blocks": ["172.25.32.0/20"],
+                "description": "Consul LAN Serf (tcp)",
+                "from_port": 8301,
+                "id": "sgrule-2771047700",
+                "ipv6_cidr_blocks": null,
+                "prefix_list_ids": null,
+                "protocol": "tcp",
+                "security_group_id": "sg-0910beaa2fe6d4e14",
+                "security_group_rule_id": "sgr-0e52d0b11889a7222",
+                "self": false,
+                "source_security_group_id": null,
+                "timeouts": null,
+                "to_port": 8301,
+                "type": "ingress"
+              },
+              "sensitive_values": {
+                "cidr_blocks": [false]
+              },
+              "depends_on": [
+                "hcp_hvn.primary",
+                "module.aws_hcp_consul.aws_security_group.hcp_consul",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.vpc.aws_vpc.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.aws_security_group_rule.allow_lan_consul_gossip[1]",
+              "mode": "managed",
+              "type": "aws_security_group_rule",
+              "name": "allow_lan_consul_gossip",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 2,
+              "values": {
+                "cidr_blocks": ["172.25.32.0/20"],
+                "description": "Consul LAN Serf (udp)",
+                "from_port": 8301,
+                "id": "sgrule-325432691",
+                "ipv6_cidr_blocks": null,
+                "prefix_list_ids": null,
+                "protocol": "udp",
+                "security_group_id": "sg-0910beaa2fe6d4e14",
+                "security_group_rule_id": "sgr-00e8f99a8791a61c3",
+                "self": false,
+                "source_security_group_id": null,
+                "timeouts": null,
+                "to_port": 8301,
+                "type": "ingress"
+              },
+              "sensitive_values": {
+                "cidr_blocks": [false]
+              },
+              "depends_on": [
+                "hcp_hvn.primary",
+                "module.aws_hcp_consul.aws_security_group.hcp_consul",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.vpc.aws_vpc.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.aws_security_group_rule.allow_self[0]",
+              "mode": "managed",
+              "type": "aws_security_group_rule",
+              "name": "allow_self",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 2,
+              "values": {
+                "cidr_blocks": null,
+                "description": "Allow members of this security group to communicate over all ports",
+                "from_port": 0,
+                "id": "sgrule-1956725954",
+                "ipv6_cidr_blocks": null,
+                "prefix_list_ids": null,
+                "protocol": "-1",
+                "security_group_id": "sg-0910beaa2fe6d4e14",
+                "security_group_rule_id": "sgr-0281aa7c072e82974",
+                "self": true,
+                "source_security_group_id": null,
+                "timeouts": null,
+                "to_port": 0,
+                "type": "ingress"
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "module.aws_hcp_consul.aws_security_group.hcp_consul",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.vpc.aws_vpc.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.aws_vpc_peering_connection_accepter.peer",
+              "mode": "managed",
+              "type": "aws_vpc_peering_connection_accepter",
+              "name": "peer",
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "accept_status": "active",
+                "accepter": [
+                  {
+                    "allow_classic_link_to_remote_vpc": false,
+                    "allow_remote_vpc_dns_resolution": false,
+                    "allow_vpc_to_remote_classic_link": false
+                  }
+                ],
+                "auto_accept": true,
+                "id": "pcx-0f4b21740d1a4cb80",
+                "peer_owner_id": "468001993716",
+                "peer_region": "us-east-2",
+                "peer_vpc_id": "vpc-09ce6dbd62e5cdee8",
+                "requester": [],
+                "tags": null,
+                "tags_all": {},
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0",
+                "vpc_peering_connection_id": "pcx-0f4b21740d1a4cb80"
+              },
+              "sensitive_values": {
+                "accepter": [{}],
+                "requester": [],
+                "tags_all": {}
+              },
+              "depends_on": [
+                "hcp_hvn.primary",
+                "module.aws_hcp_consul.data.aws_region.current",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.aws_hcp_consul.hcp_aws_network_peering.default",
+                "module.vpc.aws_vpc.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.hcp_aws_network_peering.default",
+              "mode": "managed",
+              "type": "hcp_aws_network_peering",
+              "name": "default",
+              "provider_name": "registry.terraform.io/hashicorp/hcp",
+              "schema_version": 0,
+              "values": {
+                "created_at": "2023-04-04T13:28:53.000Z",
+                "expires_at": "2023-04-11T13:28:53.000Z",
+                "hvn_id": "incident-as-code",
+                "id": "/project/REDACTED/hashicorp.network.peering/vpc-09a25bad6f9c9eef0-peering",
+                "organization_id": "REDACTED",
+                "peer_account_id": "938765688536",
+                "peer_vpc_id": "vpc-09a25bad6f9c9eef0",
+                "peer_vpc_region": "us-east-2",
+                "peering_id": "vpc-09a25bad6f9c9eef0-peering",
+                "project_id": "REDACTED",
+                "provider_peering_id": "pcx-0f4b21740d1a4cb80",
+                "self_link": "/project/REDACTED/hashicorp.network.peering/vpc-09a25bad6f9c9eef0-peering",
+                "state": "PENDING_ACCEPTANCE",
+                "timeouts": null
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "hcp_hvn.primary",
+                "module.aws_hcp_consul.data.aws_region.current",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.vpc.aws_vpc.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.hcp_hvn_route.peering_route[0]",
+              "mode": "managed",
+              "type": "hcp_hvn_route",
+              "name": "peering_route",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/hcp",
+              "schema_version": 0,
+              "values": {
+                "created_at": "2023-04-04T13:28:56.000Z",
+                "destination_cidr": "10.0.0.0/24",
+                "hvn_link": "/project/REDACTED/hashicorp.network.hvn/incident-as-code",
+                "hvn_route_id": "subnet-04928ea07dbfde428",
+                "id": "/project/REDACTED/hashicorp.network.route/subnet-04928ea07dbfde428",
+                "self_link": "/project/REDACTED/hashicorp.network.route/subnet-04928ea07dbfde428",
+                "state": "ACTIVE",
+                "target_link": "/project/REDACTED/hashicorp.network.peering/vpc-09a25bad6f9c9eef0-peering",
+                "timeouts": null
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "hcp_hvn.primary",
+                "module.aws_hcp_consul.aws_vpc_peering_connection_accepter.peer",
+                "module.aws_hcp_consul.data.aws_region.current",
+                "module.aws_hcp_consul.data.aws_subnet.selected",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.aws_hcp_consul.hcp_aws_network_peering.default",
+                "module.vpc.aws_subnet.private",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.hcp_hvn_route.peering_route[1]",
+              "mode": "managed",
+              "type": "hcp_hvn_route",
+              "name": "peering_route",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/hcp",
+              "schema_version": 0,
+              "values": {
+                "created_at": "2023-04-04T13:28:56.000Z",
+                "destination_cidr": "10.0.1.0/24",
+                "hvn_link": "/project/REDACTED/hashicorp.network.hvn/incident-as-code",
+                "hvn_route_id": "subnet-0b66e5c207a810e93",
+                "id": "/project/REDACTED/hashicorp.network.route/subnet-0b66e5c207a810e93",
+                "self_link": "/project/REDACTED/hashicorp.network.route/subnet-0b66e5c207a810e93",
+                "state": "ACTIVE",
+                "target_link": "/project/REDACTED/hashicorp.network.peering/vpc-09a25bad6f9c9eef0-peering",
+                "timeouts": null
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "hcp_hvn.primary",
+                "module.aws_hcp_consul.aws_vpc_peering_connection_accepter.peer",
+                "module.aws_hcp_consul.data.aws_region.current",
+                "module.aws_hcp_consul.data.aws_subnet.selected",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.aws_hcp_consul.hcp_aws_network_peering.default",
+                "module.vpc.aws_subnet.private",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.aws_hcp_consul.hcp_hvn_route.peering_route[2]",
+              "mode": "managed",
+              "type": "hcp_hvn_route",
+              "name": "peering_route",
+              "index": 2,
+              "provider_name": "registry.terraform.io/hashicorp/hcp",
+              "schema_version": 0,
+              "values": {
+                "created_at": "2023-04-04T13:28:56.000Z",
+                "destination_cidr": "10.0.2.0/24",
+                "hvn_link": "/project/REDACTED/hashicorp.network.hvn/incident-as-code",
+                "hvn_route_id": "subnet-0d2b44c166f03d606",
+                "id": "/project/REDACTED/hashicorp.network.route/subnet-0d2b44c166f03d606",
+                "self_link": "/project/REDACTED/hashicorp.network.route/subnet-0d2b44c166f03d606",
+                "state": "ACTIVE",
+                "target_link": "/project/REDACTED/hashicorp.network.peering/vpc-09a25bad6f9c9eef0-peering",
+                "timeouts": null
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "hcp_hvn.primary",
+                "module.aws_hcp_consul.aws_vpc_peering_connection_accepter.peer",
+                "module.aws_hcp_consul.data.aws_region.current",
+                "module.aws_hcp_consul.data.aws_subnet.selected",
+                "module.aws_hcp_consul.data.aws_vpc.selected",
+                "module.aws_hcp_consul.hcp_aws_network_peering.default",
+                "module.vpc.aws_subnet.private",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            }
+          ],
+          "address": "module.aws_hcp_consul"
+        },
+        {
+          "resources": [
+            {
+              "address": "module.vpc.aws_eip.nat[0]",
+              "mode": "managed",
+              "type": "aws_eip",
+              "name": "nat",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "address": null,
+                "allocation_id": "eipalloc-03e3dd9f5aac7466c",
+                "associate_with_private_ip": null,
+                "association_id": "",
+                "carrier_ip": "",
+                "customer_owned_ip": "",
+                "customer_owned_ipv4_pool": "",
+                "domain": "vpc",
+                "id": "eipalloc-03e3dd9f5aac7466c",
+                "instance": "",
+                "network_border_group": "us-east-2",
+                "network_interface": "",
+                "private_dns": null,
+                "private_ip": "",
+                "public_dns": "ec2-18-223-253-162.us-east-2.compute.amazonaws.com",
+                "public_ip": "18.223.253.162",
+                "public_ipv4_pool": "amazon",
+                "tags": {
+                  "Name": "incident-as-code-us-east-2a"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-us-east-2a"
+                },
+                "timeouts": null,
+                "vpc": true
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": ["data.aws_availability_zones.available"]
+            },
+            {
+              "address": "module.vpc.aws_eip.nat[1]",
+              "mode": "managed",
+              "type": "aws_eip",
+              "name": "nat",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "address": null,
+                "allocation_id": "eipalloc-0821b47df6e6662ff",
+                "associate_with_private_ip": null,
+                "association_id": "",
+                "carrier_ip": "",
+                "customer_owned_ip": "",
+                "customer_owned_ipv4_pool": "",
+                "domain": "vpc",
+                "id": "eipalloc-0821b47df6e6662ff",
+                "instance": "",
+                "network_border_group": "us-east-2",
+                "network_interface": "",
+                "private_dns": null,
+                "private_ip": "",
+                "public_dns": "ec2-18-119-55-70.us-east-2.compute.amazonaws.com",
+                "public_ip": "18.119.55.70",
+                "public_ipv4_pool": "amazon",
+                "tags": {
+                  "Name": "incident-as-code-us-east-2b"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-us-east-2b"
+                },
+                "timeouts": null,
+                "vpc": true
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": ["data.aws_availability_zones.available"]
+            },
+            {
+              "address": "module.vpc.aws_eip.nat[2]",
+              "mode": "managed",
+              "type": "aws_eip",
+              "name": "nat",
+              "index": 2,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "address": null,
+                "allocation_id": "eipalloc-0e27b57cd8752cf9e",
+                "associate_with_private_ip": null,
+                "association_id": "",
+                "carrier_ip": "",
+                "customer_owned_ip": "",
+                "customer_owned_ipv4_pool": "",
+                "domain": "vpc",
+                "id": "eipalloc-0e27b57cd8752cf9e",
+                "instance": "",
+                "network_border_group": "us-east-2",
+                "network_interface": "",
+                "private_dns": null,
+                "private_ip": "",
+                "public_dns": "ec2-3-137-125-243.us-east-2.compute.amazonaws.com",
+                "public_ip": "3.137.125.243",
+                "public_ipv4_pool": "amazon",
+                "tags": {
+                  "Name": "incident-as-code-us-east-2c"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-us-east-2c"
+                },
+                "timeouts": null,
+                "vpc": true
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": ["data.aws_availability_zones.available"]
+            },
+            {
+              "address": "module.vpc.aws_internet_gateway.this[0]",
+              "mode": "managed",
+              "type": "aws_internet_gateway",
+              "name": "this",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:internet-gateway/igw-0a5d2e5727778ddce",
+                "id": "igw-0a5d2e5727778ddce",
+                "owner_id": "938765688536",
+                "tags": {
+                  "Name": "incident-as-code"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_nat_gateway.this[0]",
+              "mode": "managed",
+              "type": "aws_nat_gateway",
+              "name": "this",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "allocation_id": "eipalloc-03e3dd9f5aac7466c",
+                "connectivity_type": "public",
+                "id": "nat-08af81f03dbbba4a6",
+                "network_interface_id": "eni-048b3dcd61d1b7010",
+                "private_ip": "10.0.3.227",
+                "public_ip": "18.223.253.162",
+                "subnet_id": "subnet-0cf3e65fed8c05c39",
+                "tags": {
+                  "Name": "incident-as-code-us-east-2a"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-us-east-2a"
+                }
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_eip.nat",
+                "module.vpc.aws_internet_gateway.this",
+                "module.vpc.aws_subnet.public",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_nat_gateway.this[1]",
+              "mode": "managed",
+              "type": "aws_nat_gateway",
+              "name": "this",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "allocation_id": "eipalloc-0821b47df6e6662ff",
+                "connectivity_type": "public",
+                "id": "nat-0ebc7f27d7e0d2b2c",
+                "network_interface_id": "eni-05ef7fa89f38ea1c5",
+                "private_ip": "10.0.4.71",
+                "public_ip": "18.119.55.70",
+                "subnet_id": "subnet-09774416bb05e507b",
+                "tags": {
+                  "Name": "incident-as-code-us-east-2b"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-us-east-2b"
+                }
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_eip.nat",
+                "module.vpc.aws_internet_gateway.this",
+                "module.vpc.aws_subnet.public",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_nat_gateway.this[2]",
+              "mode": "managed",
+              "type": "aws_nat_gateway",
+              "name": "this",
+              "index": 2,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "allocation_id": "eipalloc-0e27b57cd8752cf9e",
+                "connectivity_type": "public",
+                "id": "nat-0e9bc7159d5dc7957",
+                "network_interface_id": "eni-08122a489b1b21345",
+                "private_ip": "10.0.5.123",
+                "public_ip": "3.137.125.243",
+                "subnet_id": "subnet-0b8717ec1b6459ee4",
+                "tags": {
+                  "Name": "incident-as-code-us-east-2c"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-us-east-2c"
+                }
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_eip.nat",
+                "module.vpc.aws_internet_gateway.this",
+                "module.vpc.aws_subnet.public",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route.private_nat_gateway[0]",
+              "mode": "managed",
+              "type": "aws_route",
+              "name": "private_nat_gateway",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "carrier_gateway_id": "",
+                "core_network_arn": "",
+                "destination_cidr_block": "0.0.0.0/0",
+                "destination_ipv6_cidr_block": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "",
+                "id": "r-rtb-066fa52f11244dd1b1080289494",
+                "instance_id": "",
+                "instance_owner_id": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "nat-08af81f03dbbba4a6",
+                "network_interface_id": "",
+                "origin": "CreateRoute",
+                "route_table_id": "rtb-066fa52f11244dd1b",
+                "state": "active",
+                "timeouts": {
+                  "create": "5m",
+                  "delete": null,
+                  "update": null
+                },
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": ""
+              },
+              "sensitive_values": {
+                "timeouts": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_eip.nat",
+                "module.vpc.aws_internet_gateway.this",
+                "module.vpc.aws_nat_gateway.this",
+                "module.vpc.aws_route_table.private",
+                "module.vpc.aws_subnet.public",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route.private_nat_gateway[1]",
+              "mode": "managed",
+              "type": "aws_route",
+              "name": "private_nat_gateway",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "carrier_gateway_id": "",
+                "core_network_arn": "",
+                "destination_cidr_block": "0.0.0.0/0",
+                "destination_ipv6_cidr_block": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "",
+                "id": "r-rtb-07075e7b7c4c1ce891080289494",
+                "instance_id": "",
+                "instance_owner_id": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "nat-0ebc7f27d7e0d2b2c",
+                "network_interface_id": "",
+                "origin": "CreateRoute",
+                "route_table_id": "rtb-07075e7b7c4c1ce89",
+                "state": "active",
+                "timeouts": {
+                  "create": "5m",
+                  "delete": null,
+                  "update": null
+                },
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": ""
+              },
+              "sensitive_values": {
+                "timeouts": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_eip.nat",
+                "module.vpc.aws_internet_gateway.this",
+                "module.vpc.aws_nat_gateway.this",
+                "module.vpc.aws_route_table.private",
+                "module.vpc.aws_subnet.public",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route.private_nat_gateway[2]",
+              "mode": "managed",
+              "type": "aws_route",
+              "name": "private_nat_gateway",
+              "index": 2,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "carrier_gateway_id": "",
+                "core_network_arn": "",
+                "destination_cidr_block": "0.0.0.0/0",
+                "destination_ipv6_cidr_block": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "",
+                "id": "r-rtb-0e54cceb83d10056a1080289494",
+                "instance_id": "",
+                "instance_owner_id": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "nat-0e9bc7159d5dc7957",
+                "network_interface_id": "",
+                "origin": "CreateRoute",
+                "route_table_id": "rtb-0e54cceb83d10056a",
+                "state": "active",
+                "timeouts": {
+                  "create": "5m",
+                  "delete": null,
+                  "update": null
+                },
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": ""
+              },
+              "sensitive_values": {
+                "timeouts": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_eip.nat",
+                "module.vpc.aws_internet_gateway.this",
+                "module.vpc.aws_nat_gateway.this",
+                "module.vpc.aws_route_table.private",
+                "module.vpc.aws_subnet.public",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route.public_internet_gateway[0]",
+              "mode": "managed",
+              "type": "aws_route",
+              "name": "public_internet_gateway",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "carrier_gateway_id": "",
+                "core_network_arn": "",
+                "destination_cidr_block": "0.0.0.0/0",
+                "destination_ipv6_cidr_block": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "igw-0a5d2e5727778ddce",
+                "id": "r-rtb-0c0945acfbebb46931080289494",
+                "instance_id": "",
+                "instance_owner_id": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "",
+                "network_interface_id": "",
+                "origin": "CreateRoute",
+                "route_table_id": "rtb-0c0945acfbebb4693",
+                "state": "active",
+                "timeouts": {
+                  "create": "5m",
+                  "delete": null,
+                  "update": null
+                },
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": ""
+              },
+              "sensitive_values": {
+                "timeouts": {}
+              },
+              "depends_on": [
+                "module.vpc.aws_internet_gateway.this",
+                "module.vpc.aws_route_table.public",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route_table.private[0]",
+              "mode": "managed",
+              "type": "aws_route_table",
+              "name": "private",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:route-table/rtb-066fa52f11244dd1b",
+                "id": "rtb-066fa52f11244dd1b",
+                "owner_id": "938765688536",
+                "propagating_vgws": [],
+                "route": [],
+                "tags": {
+                  "Name": "incident-as-code-private-us-east-2a"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-private-us-east-2a"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "propagating_vgws": [],
+                "route": [],
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route_table.private[1]",
+              "mode": "managed",
+              "type": "aws_route_table",
+              "name": "private",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:route-table/rtb-07075e7b7c4c1ce89",
+                "id": "rtb-07075e7b7c4c1ce89",
+                "owner_id": "938765688536",
+                "propagating_vgws": [],
+                "route": [],
+                "tags": {
+                  "Name": "incident-as-code-private-us-east-2b"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-private-us-east-2b"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "propagating_vgws": [],
+                "route": [],
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route_table.private[2]",
+              "mode": "managed",
+              "type": "aws_route_table",
+              "name": "private",
+              "index": 2,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:route-table/rtb-0e54cceb83d10056a",
+                "id": "rtb-0e54cceb83d10056a",
+                "owner_id": "938765688536",
+                "propagating_vgws": [],
+                "route": [],
+                "tags": {
+                  "Name": "incident-as-code-private-us-east-2c"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-private-us-east-2c"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "propagating_vgws": [],
+                "route": [],
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route_table.public[0]",
+              "mode": "managed",
+              "type": "aws_route_table",
+              "name": "public",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:route-table/rtb-0c0945acfbebb4693",
+                "id": "rtb-0c0945acfbebb4693",
+                "owner_id": "938765688536",
+                "propagating_vgws": [],
+                "route": [],
+                "tags": {
+                  "Name": "incident-as-code-public"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-public"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "propagating_vgws": [],
+                "route": [],
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route_table_association.private[0]",
+              "mode": "managed",
+              "type": "aws_route_table_association",
+              "name": "private",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "gateway_id": "",
+                "id": "rtbassoc-01133c15474d6ef98",
+                "route_table_id": "rtb-066fa52f11244dd1b",
+                "subnet_id": "subnet-04928ea07dbfde428"
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_route_table.private",
+                "module.vpc.aws_subnet.private",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route_table_association.private[1]",
+              "mode": "managed",
+              "type": "aws_route_table_association",
+              "name": "private",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "gateway_id": "",
+                "id": "rtbassoc-054256a58b8edaf9b",
+                "route_table_id": "rtb-07075e7b7c4c1ce89",
+                "subnet_id": "subnet-0b66e5c207a810e93"
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_route_table.private",
+                "module.vpc.aws_subnet.private",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route_table_association.private[2]",
+              "mode": "managed",
+              "type": "aws_route_table_association",
+              "name": "private",
+              "index": 2,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "gateway_id": "",
+                "id": "rtbassoc-045b3d11e14467240",
+                "route_table_id": "rtb-0e54cceb83d10056a",
+                "subnet_id": "subnet-0d2b44c166f03d606"
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_route_table.private",
+                "module.vpc.aws_subnet.private",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route_table_association.public[0]",
+              "mode": "managed",
+              "type": "aws_route_table_association",
+              "name": "public",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "gateway_id": "",
+                "id": "rtbassoc-0e65d490fc080a80e",
+                "route_table_id": "rtb-0c0945acfbebb4693",
+                "subnet_id": "subnet-0cf3e65fed8c05c39"
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_route_table.public",
+                "module.vpc.aws_subnet.public",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route_table_association.public[1]",
+              "mode": "managed",
+              "type": "aws_route_table_association",
+              "name": "public",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "gateway_id": "",
+                "id": "rtbassoc-0b7a5ad1371a8ab96",
+                "route_table_id": "rtb-0c0945acfbebb4693",
+                "subnet_id": "subnet-09774416bb05e507b"
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_route_table.public",
+                "module.vpc.aws_subnet.public",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_route_table_association.public[2]",
+              "mode": "managed",
+              "type": "aws_route_table_association",
+              "name": "public",
+              "index": 2,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 0,
+              "values": {
+                "gateway_id": "",
+                "id": "rtbassoc-0b775578288f1f4a5",
+                "route_table_id": "rtb-0c0945acfbebb4693",
+                "subnet_id": "subnet-0b8717ec1b6459ee4"
+              },
+              "sensitive_values": {},
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_route_table.public",
+                "module.vpc.aws_subnet.public",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_subnet.private[0]",
+              "mode": "managed",
+              "type": "aws_subnet",
+              "name": "private",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 1,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:subnet/subnet-04928ea07dbfde428",
+                "assign_ipv6_address_on_creation": false,
+                "availability_zone": "us-east-2a",
+                "availability_zone_id": "use2-az1",
+                "cidr_block": "10.0.0.0/24",
+                "customer_owned_ipv4_pool": "",
+                "enable_dns64": false,
+                "enable_resource_name_dns_a_record_on_launch": false,
+                "enable_resource_name_dns_aaaa_record_on_launch": false,
+                "id": "subnet-04928ea07dbfde428",
+                "ipv6_cidr_block": "",
+                "ipv6_cidr_block_association_id": "",
+                "ipv6_native": false,
+                "map_customer_owned_ip_on_launch": false,
+                "map_public_ip_on_launch": false,
+                "outpost_arn": "",
+                "owner_id": "938765688536",
+                "private_dns_hostname_type_on_launch": "ip-name",
+                "tags": {
+                  "Name": "incident-as-code-private-us-east-2a"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-private-us-east-2a"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_subnet.private[1]",
+              "mode": "managed",
+              "type": "aws_subnet",
+              "name": "private",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 1,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:subnet/subnet-0b66e5c207a810e93",
+                "assign_ipv6_address_on_creation": false,
+                "availability_zone": "us-east-2b",
+                "availability_zone_id": "use2-az2",
+                "cidr_block": "10.0.1.0/24",
+                "customer_owned_ipv4_pool": "",
+                "enable_dns64": false,
+                "enable_resource_name_dns_a_record_on_launch": false,
+                "enable_resource_name_dns_aaaa_record_on_launch": false,
+                "id": "subnet-0b66e5c207a810e93",
+                "ipv6_cidr_block": "",
+                "ipv6_cidr_block_association_id": "",
+                "ipv6_native": false,
+                "map_customer_owned_ip_on_launch": false,
+                "map_public_ip_on_launch": false,
+                "outpost_arn": "",
+                "owner_id": "938765688536",
+                "private_dns_hostname_type_on_launch": "ip-name",
+                "tags": {
+                  "Name": "incident-as-code-private-us-east-2b"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-private-us-east-2b"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_subnet.private[2]",
+              "mode": "managed",
+              "type": "aws_subnet",
+              "name": "private",
+              "index": 2,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 1,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:subnet/subnet-0d2b44c166f03d606",
+                "assign_ipv6_address_on_creation": false,
+                "availability_zone": "us-east-2c",
+                "availability_zone_id": "use2-az3",
+                "cidr_block": "10.0.2.0/24",
+                "customer_owned_ipv4_pool": "",
+                "enable_dns64": false,
+                "enable_resource_name_dns_a_record_on_launch": false,
+                "enable_resource_name_dns_aaaa_record_on_launch": false,
+                "id": "subnet-0d2b44c166f03d606",
+                "ipv6_cidr_block": "",
+                "ipv6_cidr_block_association_id": "",
+                "ipv6_native": false,
+                "map_customer_owned_ip_on_launch": false,
+                "map_public_ip_on_launch": false,
+                "outpost_arn": "",
+                "owner_id": "938765688536",
+                "private_dns_hostname_type_on_launch": "ip-name",
+                "tags": {
+                  "Name": "incident-as-code-private-us-east-2c"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-private-us-east-2c"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_subnet.public[0]",
+              "mode": "managed",
+              "type": "aws_subnet",
+              "name": "public",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 1,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:subnet/subnet-0cf3e65fed8c05c39",
+                "assign_ipv6_address_on_creation": false,
+                "availability_zone": "us-east-2a",
+                "availability_zone_id": "use2-az1",
+                "cidr_block": "10.0.3.0/24",
+                "customer_owned_ipv4_pool": "",
+                "enable_dns64": false,
+                "enable_resource_name_dns_a_record_on_launch": false,
+                "enable_resource_name_dns_aaaa_record_on_launch": false,
+                "id": "subnet-0cf3e65fed8c05c39",
+                "ipv6_cidr_block": "",
+                "ipv6_cidr_block_association_id": "",
+                "ipv6_native": false,
+                "map_customer_owned_ip_on_launch": false,
+                "map_public_ip_on_launch": true,
+                "outpost_arn": "",
+                "owner_id": "938765688536",
+                "private_dns_hostname_type_on_launch": "ip-name",
+                "tags": {
+                  "Name": "incident-as-code-public-us-east-2a"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-public-us-east-2a"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_subnet.public[1]",
+              "mode": "managed",
+              "type": "aws_subnet",
+              "name": "public",
+              "index": 1,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 1,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:subnet/subnet-09774416bb05e507b",
+                "assign_ipv6_address_on_creation": false,
+                "availability_zone": "us-east-2b",
+                "availability_zone_id": "use2-az2",
+                "cidr_block": "10.0.4.0/24",
+                "customer_owned_ipv4_pool": "",
+                "enable_dns64": false,
+                "enable_resource_name_dns_a_record_on_launch": false,
+                "enable_resource_name_dns_aaaa_record_on_launch": false,
+                "id": "subnet-09774416bb05e507b",
+                "ipv6_cidr_block": "",
+                "ipv6_cidr_block_association_id": "",
+                "ipv6_native": false,
+                "map_customer_owned_ip_on_launch": false,
+                "map_public_ip_on_launch": true,
+                "outpost_arn": "",
+                "owner_id": "938765688536",
+                "private_dns_hostname_type_on_launch": "ip-name",
+                "tags": {
+                  "Name": "incident-as-code-public-us-east-2b"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-public-us-east-2b"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_subnet.public[2]",
+              "mode": "managed",
+              "type": "aws_subnet",
+              "name": "public",
+              "index": 2,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 1,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:subnet/subnet-0b8717ec1b6459ee4",
+                "assign_ipv6_address_on_creation": false,
+                "availability_zone": "us-east-2c",
+                "availability_zone_id": "use2-az3",
+                "cidr_block": "10.0.5.0/24",
+                "customer_owned_ipv4_pool": "",
+                "enable_dns64": false,
+                "enable_resource_name_dns_a_record_on_launch": false,
+                "enable_resource_name_dns_aaaa_record_on_launch": false,
+                "id": "subnet-0b8717ec1b6459ee4",
+                "ipv6_cidr_block": "",
+                "ipv6_cidr_block_association_id": "",
+                "ipv6_native": false,
+                "map_customer_owned_ip_on_launch": false,
+                "map_public_ip_on_launch": true,
+                "outpost_arn": "",
+                "owner_id": "938765688536",
+                "private_dns_hostname_type_on_launch": "ip-name",
+                "tags": {
+                  "Name": "incident-as-code-public-us-east-2c"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code-public-us-east-2c"
+                },
+                "timeouts": null,
+                "vpc_id": "vpc-09a25bad6f9c9eef0"
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              },
+              "depends_on": [
+                "data.aws_availability_zones.available",
+                "module.vpc.aws_vpc.this",
+                "module.vpc.aws_vpc_ipv4_cidr_block_association.this"
+              ]
+            },
+            {
+              "address": "module.vpc.aws_vpc.this[0]",
+              "mode": "managed",
+              "type": "aws_vpc",
+              "name": "this",
+              "index": 0,
+              "provider_name": "registry.terraform.io/hashicorp/aws",
+              "schema_version": 1,
+              "values": {
+                "arn": "arn:aws:ec2:us-east-2:938765688536:vpc/vpc-09a25bad6f9c9eef0",
+                "assign_generated_ipv6_cidr_block": false,
+                "cidr_block": "10.0.0.0/16",
+                "default_network_acl_id": "acl-0fea6e4c2375c4e8f",
+                "default_route_table_id": "rtb-0a5f32c766bbd2708",
+                "default_security_group_id": "sg-00c2d45ea3ddaa8ac",
+                "dhcp_options_id": "dopt-56bd073d",
+                "enable_classiclink": false,
+                "enable_classiclink_dns_support": false,
+                "enable_dns_hostnames": true,
+                "enable_dns_support": true,
+                "enable_network_address_usage_metrics": false,
+                "id": "vpc-09a25bad6f9c9eef0",
+                "instance_tenancy": "default",
+                "ipv4_ipam_pool_id": null,
+                "ipv4_netmask_length": null,
+                "ipv6_association_id": "",
+                "ipv6_cidr_block": "",
+                "ipv6_cidr_block_network_border_group": "",
+                "ipv6_ipam_pool_id": "",
+                "ipv6_netmask_length": 0,
+                "main_route_table_id": "rtb-0a5f32c766bbd2708",
+                "owner_id": "938765688536",
+                "tags": {
+                  "Name": "incident-as-code"
+                },
+                "tags_all": {
+                  "Name": "incident-as-code"
+                }
+              },
+              "sensitive_values": {
+                "tags": {},
+                "tags_all": {}
+              }
+            }
+          ],
+          "address": "module.vpc"
+        }
+      ]
+    }
+  }
+}

@@ -13,7 +13,7 @@ export interface TerraformApi {
     organization: string,
     serviceProvider: string,
   ): Promise<OAuthClient>;
-  getOAuthToken(clientID: string): Promise<OAuthToken>;
+  getOAuthToken(clientID: string, user?: string): Promise<OAuthToken>;
   createWorkspace(
     organization: string,
     workspace: WorkspaceRequest,
@@ -50,6 +50,10 @@ export interface OAuthClient {
     'service-provider'?: string;
     'http-url'?: string;
   };
+}
+
+export interface OAuthTokens {
+  data: OAuthToken[];
 }
 
 export interface OAuthToken {

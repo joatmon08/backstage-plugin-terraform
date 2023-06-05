@@ -20,6 +20,7 @@ export const createTerraformWorkspaceAction = (options: {
     vcsSourceProvider: string;
     vcsOwner: string;
     vcsRepo: string;
+    vcsAuthUser: string;
     workingDirectory: string;
     agentPoolId?: string;
     autoApply?: boolean;
@@ -64,6 +65,12 @@ export const createTerraformWorkspaceAction = (options: {
             title: 'VCS Repository Identifer',
             description: 'The repo identifier for version control repository',
           },
+          vcsAuthUser: {
+            type: 'string',
+            title: 'VCS User for Authentication',
+            description:
+              'The VCS user in Terraform workspace for authentication',
+          },
           workingDirectory: {
             type: 'string',
             title: 'Working Directory',
@@ -99,6 +106,7 @@ export const createTerraformWorkspaceAction = (options: {
         vcsSourceProvider,
         vcsOwner,
         vcsRepo,
+        vcsAuthUser,
         workingDirectory,
         agentPoolId,
         autoApply,
@@ -123,11 +131,15 @@ export const createTerraformWorkspaceAction = (options: {
         );
       }
 
-      const oauthToken = await terraformApi.getOAuthToken(oauthClient.id);
+      const oauthToken = await terraformApi.getOAuthToken(
+        oauthClient.id,
+        vcsAuthUser,
+      );
+
       ctx.logger.info(`Found OAuth Token with id ${oauthToken.id}`);
 
       const terraformProject =
-        project !== null
+        project !== undefined
           ? await terraformApi.getProject(organization, project).then(p => {
               return p.id;
             })
@@ -147,7 +159,6 @@ export const createTerraformWorkspaceAction = (options: {
               'oauth-token-id': oauthToken.id,
             },
             'working-directory': workingDirectory,
-            'trigger-prefixes': [workingDirectory],
             'source-name': 'Backstage',
             'queue-all-runs': queueRuns,
           },

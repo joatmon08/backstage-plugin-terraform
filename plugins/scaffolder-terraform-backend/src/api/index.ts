@@ -7,6 +7,7 @@ import { ConfigApi, DiscoveryApi } from '@backstage/core-plugin-api';
 import {
   OAuthClient,
   OAuthToken,
+  OAuthTokens,
   Project,
   ProjectRequest,
   Run,
@@ -76,7 +77,7 @@ export class TerraformClient implements TerraformApi {
     });
   }
 
-  async getOAuthToken(clientID: string): Promise<OAuthToken> {
+  async getOAuthToken(clientID: string, user: string): Promise<OAuthToken> {
     const { apiUrl } = await this.getUrls();
 
     const response = await fetch(
@@ -93,6 +94,12 @@ export class TerraformClient implements TerraformApi {
     }
 
     return response.json().then(tokens => {
+      if (user !== undefined) {
+        return tokens.data.filter(
+          (token: OAuthToken) =>
+            token.attributes['service-provider-user'] === user,
+        )[0];
+      }
       return tokens.data[0];
     });
   }
