@@ -35,7 +35,6 @@
     "@backstage/plugin-search-backend-node": "^1.2.0",
     "@backstage/plugin-techdocs-backend": "^1.6.1",
     "@internal/plugin-scaffolder-terraform-backend": "^0.1.0",
-    "@internal/plugin-terraform-backend": "^0.1.0",
     "app": "link:../app",
     "backstage-aws-cloudformation-plugin": "^2.0.7",
     "better-sqlite3": "^8.0.0",
