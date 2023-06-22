@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+
+  vault:
+    image: vault:1.13.2
+    restart: always
+    command: [ 'vault', 'server', '-dev', '-dev-listen-address=0.0.0.0:8200']
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: "some-root-token"
+    ports:
+      - "8200:8200"
+    cap_add:
+      - IPC_LOCK

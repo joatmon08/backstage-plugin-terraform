@@ -50,9 +50,23 @@ spec:
           type: string
           ui:field: RepoUrlPicker
           ui:options:
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
             allowedHosts:
               - github.com
-    - title: Define variables for Terraform
+    - title: Define Terraform Cloud secrets engine for Vault
+      properties:
+        vaultMount:
+          title: Vault Mount
+          type: string
+          description: A mount for the Terraform Cloud secrets engine in Vault
+          default: terraform
+        vaultRole:
+          title: Vault Role
+          type: string
+          description: A role to use for accessing the Terraform Cloud token in Vault
+          default: backstage
+    - title: Define variables for Terraform module
       properties:
         secondHello:
           title: Second Hello
@@ -79,9 +93,25 @@ spec:
       name: Publish
       action: publish:github
       input:
+        token: '${{ secrets.USER_OAUTH_TOKEN }}'
         allowedHosts: ['github.com']
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
+
+    - id: vault-auth
+      name: Authenticate to Vault using GitHub Auth Method
+      action: vault:authenticate:github
+      input:
+        token: '${{ secrets.USER_OAUTH_TOKEN }}'
+        path: 'github'
+
+    - id: vault-tfc-token
+      name: Get Terraform token from Vault
+      action: vault:secrets:terraform
+      input:
+        token: '${{ secrets.VAULT_TOKEN }}'
+        mount: ${{ parameters.vaultMount }}
+        role: ${{ parameters.vaultRole }}
 
     - id: terraform-project
       name: Create Terraform Project

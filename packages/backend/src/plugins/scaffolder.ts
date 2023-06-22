@@ -17,6 +17,7 @@ import {
   createTerraformRunAction,
   createTerraformVariablesAction,
 } from '@internal/plugin-scaffolder-terraform-backend';
+import { authenticateToVaultWithGitHubAction, getTerraformTokenFromVaultAction } from '../../../../plugins/scaffolder-vault-backend/src';
 
 export default async function createPlugin(
   env: PluginEnvironment,
@@ -48,6 +49,14 @@ export default async function createPlugin(
       discoveryApi: env.discovery,
     }),
     createTerraformVariablesAction({
+      configApi: env.config,
+      discoveryApi: env.discovery,
+    }),
+    authenticateToVaultWithGitHubAction({
+      configApi: env.config,
+      discoveryApi: env.discovery,
+    }),
+    getTerraformTokenFromVaultAction({
       configApi: env.config,
       discoveryApi: env.discovery,
     }),

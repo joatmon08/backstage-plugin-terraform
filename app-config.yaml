@@ -56,6 +56,9 @@ proxy:
     headers:
       Authorization: Bearer ${TF_TOKEN}
       Accept: 'application/vnd.api+json'
+  '/vault':
+    target: http://127.0.0.1:8200
+    allowedHeaders: ['X-Vault-Token']
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs
@@ -69,8 +72,14 @@ techdocs:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
 
 auth:
-  # see https://backstage.io/docs/auth/ to learn about auth providers
-  providers: {}
+  environment: development
+  providers:
+    github:
+      development:
+        clientId: ${AUTH_GITHUB_CLIENT_ID}
+        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+        ## uncomment if using GitHub Enterprise
+        # enterpriseInstanceUrl: ${AUTH_GITHUB_ENTERPRISE_INSTANCE_URL}
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
