@@ -13,6 +13,7 @@ export const createTerraformRunAction = (options: {
 }) => {
   return createTemplateAction<{
     workspaceID: string;
+    token: string;
   }>({
     id: 'terraform:run:create',
     schema: {
@@ -25,15 +26,20 @@ export const createTerraformRunAction = (options: {
             title: 'Terraform Workspace ID',
             description: 'The Terraform workspace ID to queue a run',
           },
+          token: {
+            type: 'string',
+            title: 'Terraform Token',
+            description: 'Terraform token',
+          },
         },
       },
     },
     async handler(ctx) {
-      const { workspaceID } = ctx.input;
+      const { workspaceID, token } = ctx.input;
 
       const message = 'Started by Backstage scaffolder task';
 
-      const terraformApi = new TerraformClient(options);
+      const terraformApi = new TerraformClient(options, token);
 
       const run = await terraformApi.createRun(workspaceID, message);
 

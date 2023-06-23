@@ -1,13 +1,13 @@
-# scaffolder-terraform
+# scaffolder-vault
 
-Welcome to the scaffolder-terraform backend plugin!
+Welcome to the scaffolder-vault backend plugin!
 
 _This plugin was created through the Backstage CLI_
 
 ## Getting started
 
 Your plugin has been added to the example app in this repository, meaning you'll be able to access it by running `yarn
-start` in the root directory, and then navigating to [/scaffolder-terraform](http://localhost:3000/scaffolder-terraform).
+start` in the root directory, and then navigating to [/scaffolder-vault](http://localhost:3000/scaffolder-vault).
 
 You can also serve the plugin in isolation by running `yarn start` in the plugin directory.
 This method of serving the plugin provides quicker iteration speed and a faster startup and hot reloads.
@@ -26,7 +26,7 @@ import {
 import { ScmIntegrations } from '@backstage/integration';
 import { Router } from 'express';
 import type { PluginEnvironment } from '../types';
-import { createTerraformWorkspaceAction } from '@internal/plugin-scaffolder-terraform-backend';
+import { createvaultWorkspaceAction } from '@internal/plugin-scaffolder-vault-backend';
 
 export default async function createPlugin(
   env: PluginEnvironment,
@@ -45,7 +45,11 @@ export default async function createPlugin(
 
   const actions = [
     ...builtInActions,
-    createTerraformWorkspaceAction({
+    authenticateToVaultWithGitHubAction({
+      configApi: env.config,
+      discoveryApi: env.discovery,
+    }),
+    getTerraformTokenFromVaultAction({
       configApi: env.config,
       discoveryApi: env.discovery,
     }),
@@ -64,22 +68,15 @@ export default async function createPlugin(
 }
 ```
 
-This adds the custom action for creating a Terraform workspace.
+This adds the custom action for creating a vault workspace.
 
-In your `app-config.yaml`, add the base URL for Terraform Cloud/Enterprise
-and set up the proxy to point to Terraform Cloud/Enterprise.
+In your `app-config.yaml`, set up the proxy to point to Vault.
 
 ```yaml
-scaffolder:
-  terraform:
-    baseUrl: https://app.terraform.io
-
 proxy:
-  '/terraform':
-    target: https://app.terraform.io
-    headers:
-      Authorization: Bearer ${TF_TOKEN}
-      Accept: 'application/vnd.api+json'
+  '/vault':
+    target: http://127.0.0.1:8200
+    allowedHeaders: ['X-Vault-Token']
 ```
 
-Check out an example template using the action in `examples/terraform/template.yaml`.
+Check out an example template using the action in `examples/vault/template.yaml`.

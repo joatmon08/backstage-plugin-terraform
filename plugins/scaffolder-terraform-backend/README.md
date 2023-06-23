@@ -69,6 +69,15 @@ This adds the custom action for creating a Terraform workspace.
 In your `app-config.yaml`, add the base URL for Terraform Cloud/Enterprise
 and set up the proxy to point to Terraform Cloud/Enterprise.
 
+Note that if you want to limit the scope of Backstage accesses in
+TFC/E, use a Terraform token that has read-only access to an
+organization and configure your Scaffolder template to
+use custom actions to authenticate to Vault and get a Terraform
+team token.
+
+Otherwise, you'll need to use a `TF_TOKEN` with write access
+to your Terraform organization.
+
 ```yaml
 scaffolder:
   terraform:
@@ -78,8 +87,14 @@ proxy:
   '/terraform':
     target: https://app.terraform.io
     headers:
+      ### If you have Vault, you can limit
+      ### this TF_TOKEN to read-only access
+      ### to the organization so frontend
+      ### components can pull information
+      ### about Terraform Cloud runs.
       Authorization: Bearer ${TF_TOKEN}
       Accept: 'application/vnd.api+json'
+    allowedHeaders: ['Authorization']
 ```
 
 Check out an example template using the action in `examples/terraform/template.yaml`.

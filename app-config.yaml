@@ -54,8 +54,14 @@ proxy:
   '/terraform':
     target: https://app.terraform.io
     headers:
+      ### If you have Vault, you can limit
+      ### this TF_TOKEN to read-only access
+      ### to the organization so frontend
+      ### components can pull information
+      ### about Terraform Cloud runs.
       Authorization: Bearer ${TF_TOKEN}
       Accept: 'application/vnd.api+json'
+    allowedHeaders: ['Authorization']
   '/vault':
     target: http://127.0.0.1:8200
     allowedHeaders: ['X-Vault-Token']

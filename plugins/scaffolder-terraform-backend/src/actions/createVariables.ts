@@ -22,6 +22,7 @@ export const createTerraformVariablesAction = (options: {
       hcl?: boolean;
       sensitive?: boolean;
     }[];
+    token: string;
   }>({
     id: 'terraform:variables:create',
     schema: {
@@ -73,15 +74,20 @@ export const createTerraformVariablesAction = (options: {
               },
             },
           },
+          token: {
+            type: 'string',
+            title: 'Terraform Token',
+            description: 'Terraform token',
+          },
         },
       },
     },
     async handler(ctx) {
-      const { workspaceID, variables } = ctx.input;
+      const { workspaceID, variables, token } = ctx.input;
 
       const variableIDs = [];
 
-      const terraformApi = new TerraformClient(options);
+      const terraformApi = new TerraformClient(options, token);
 
       for (const v of variables) {
         const request: VariableRequest = {

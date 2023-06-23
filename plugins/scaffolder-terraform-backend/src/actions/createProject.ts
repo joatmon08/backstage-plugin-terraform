@@ -15,6 +15,7 @@ export const createTerraformProjectAction = (options: {
   return createTemplateAction<{
     organization: string;
     name: string;
+    token: string;
   }>({
     id: 'terraform:project:create',
     schema: {
@@ -32,13 +33,18 @@ export const createTerraformProjectAction = (options: {
             title: 'Name',
             description: 'The name of the Terraform project',
           },
+          token: {
+            type: 'string',
+            title: 'Terraform Token',
+            description: 'Terraform token',
+          },
         },
       },
     },
     async handler(ctx) {
-      const { organization, name } = ctx.input;
+      const { organization, name, token } = ctx.input;
 
-      const terraformApi = new TerraformClient(options);
+      const terraformApi = new TerraformClient(options, token);
 
       const projectRequest: ProjectRequest = {
         data: {

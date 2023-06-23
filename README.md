@@ -59,11 +59,50 @@ However, you will encounter a few caveats:
     the `vcsRepo` you are connecting.**
 
 
-## Using Scaffolder with HashiCorp Vault
+## Using Scaffolder with HashiCorp Vault & GitHub
 
-### Set up Backstage
+Ideally, you'll want to scope your Terraform token to
+the workspace and projects specific to a group. One approach
+is to use HashiCorp Vault to generate the Terraform tokens.
 
-1. Create an OAuth App in GitHub under **your organization**.
+In order to allow Backstage to access Vault, you need to configure
+an authentication provider for Backstage using an SCM tool (GitHub, GitLab, etc.).
+
+This is because Scaffolder has a
+[built-in action](https://backstage.io/docs/features/software-templates/writing-templates/#using-the-users-oauth-token)
+that allows you to retrieve a user OAuth token from the SCM tool for use in subsequent actions.
+
+```text
+             ┌─────────────► SCM Provider ◄─────────────────────┐
+             │                 (GitHub)                         │
+             │                                                  │
+             │                                                  │
+             │                                             ┌────┴────┬──────────────────┐
+             │                                             │         │ Vault            │
+┌────────────┴──────────────┐Auth with OAuth user token    │         │                  │
+│                           ├──────────────────────────────►  GitHub │                  │
+│        Backstage          │  Return Vault token          │   Auth  │ Terraform Cloud  │
+│   (GitHub Auth Provider)  ◄──────────────────────────────┤  Method │  Secrets Engine  │
+│                           │                              │         │                  │
+└────────────▲───┬──────────┘                              └─────────┴────▲──┬──────────┘
+             │   │             Use Vault token to get TFC token           │  │
+             │   └────────────────────────────────────────────────────────┘  │
+             │                    Return TFC Token                           │
+             └───────────────────────────────────────────────────────────────┘
+```
+
+### Set up GitHub
+
+1. Create a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+   with read-only access to your organization.
+
+1. Set the personal access token as an environment variable for Backstage.
+   This allows Backstage to read repositories and register entities into catalog.
+   ```shell
+   export GITHUB_TOKEN=""
+   ```
+
+1. Create an OAuth App for Backstage in GitHub under **your organization**.
 
 1. Set the client ID and secret as environment variables for Backstage.
    ```shell
@@ -72,7 +111,20 @@ However, you will encounter a few caveats:
    ```
 
 1. Sign into Backstage using your GitHub user and make sure
-   you grant a GitHub user access to the organization.
+   you grant a user access to the organization.
+
+### Set up Terraform Cloud
+
+1. Set a read-only Terraform Cloud token that allows
+   Backstage frontend components to retrieve information
+   about workspaces, runs, and outputs.
+   ```shell
+   export TF_TOKEN=""
+   ```
+
+1. In your Terraform Cloud organization, add a VCS provider.
+
+1. Create an OAuth App for Terraform Cloud in GitHub under **your organization**.
 
 ### Set up Vault
 

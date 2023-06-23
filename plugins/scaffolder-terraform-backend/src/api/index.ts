@@ -7,7 +7,6 @@ import { ConfigApi, DiscoveryApi } from '@backstage/core-plugin-api';
 import {
   OAuthClient,
   OAuthToken,
-  OAuthTokens,
   Project,
   ProjectRequest,
   Run,
@@ -20,9 +19,6 @@ import {
 } from './types';
 
 const DEFAULT_PROXY_PATH = '/terraform/api';
-const DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/vnd.api+json',
-};
 
 type Options = {
   discoveryApi: DiscoveryApi;
@@ -32,14 +28,16 @@ type Options = {
 export class TerraformClient implements TerraformApi {
   private readonly discoveryApi: DiscoveryApi;
   private readonly proxyPath: string;
+  private readonly headers: Record<string, string>;
 
-  constructor(options: Options) {
+  constructor(options: Options, token?: string) {
     this.discoveryApi = options.discoveryApi;
 
     const proxyPath = options.configApi.getOptionalString(
       'terraformCloud.proxyPath',
     );
     this.proxyPath = proxyPath ?? DEFAULT_PROXY_PATH;
+    this.headers = this.getHeaders(token);
   }
 
   private async getUrls() {
@@ -48,6 +46,18 @@ export class TerraformClient implements TerraformApi {
       apiUrl: `${proxyUrl}${this.proxyPath}/v2`,
       baseUrl: `${proxyUrl}${this.proxyPath}`,
     };
+  }
+
+  private getHeaders(token?: string): Record<string, string> {
+    const headers = {
+      'Content-Type': 'application/vnd.api+json'
+    };
+
+    if (token != undefined) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    return headers;
   }
 
   async getOAuthClients(
@@ -60,6 +70,7 @@ export class TerraformClient implements TerraformApi {
       `${apiUrl}/organizations/${organization}/oauth-clients`,
       {
         method: 'GET',
+        headers: this.headers,
       },
     );
 
@@ -77,13 +88,14 @@ export class TerraformClient implements TerraformApi {
     });
   }
 
-  async getOAuthToken(clientID: string, user: string): Promise<OAuthToken> {
+  async getOAuthToken(clientID: string, user: string, token?: string): Promise<OAuthToken> {
     const { apiUrl } = await this.getUrls();
 
     const response = await fetch(
       `${apiUrl}/oauth-clients/${clientID}/oauth-tokens`,
       {
         method: 'GET',
+        headers: this.headers,
       },
     );
 
@@ -104,8 +116,9 @@ export class TerraformClient implements TerraformApi {
     });
   }
 
-  async getProject(organization: string, project: string): Promise<Project> {
+  async getProject(organization: string, project: string, token?: string): Promise<Project> {
     const { apiUrl } = await this.getUrls();
+
     const urlSearchParams = new URLSearchParams({
       'filter[names]': project,
     });
@@ -114,6 +127,7 @@ export class TerraformClient implements TerraformApi {
       `${apiUrl}/organizations/${organization}/projects?${urlSearchParams}`,
       {
         method: 'GET',
+        headers: this.headers,
       },
     );
 
@@ -139,7 +153,7 @@ export class TerraformClient implements TerraformApi {
       {
         method: 'POST',
         body: JSON.stringify(project),
-        headers: DEFAULT_CONTENT_TYPE,
+        headers: this.headers,
       },
     );
 
@@ -164,7 +178,7 @@ export class TerraformClient implements TerraformApi {
       {
         method: 'POST',
         body: JSON.stringify(workspace),
-        headers: DEFAULT_CONTENT_TYPE,
+        headers: this.headers,
       },
     );
 
@@ -186,7 +200,7 @@ export class TerraformClient implements TerraformApi {
     const response = await fetch(`${apiUrl}/workspaces/${workspace}/vars`, {
       method: 'POST',
       body: JSON.stringify(variable),
-      headers: DEFAULT_CONTENT_TYPE,
+      headers: this.headers,
     });
 
     if (!response.ok) {
@@ -198,7 +212,7 @@ export class TerraformClient implements TerraformApi {
     return response.json();
   }
 
-  async createRun(workspaceID: string, message: string): Promise<Run> {
+  async createRun(workspaceID: string, message: string, token?: string): Promise<Run> {
     const { apiUrl } = await this.getUrls();
 
     const runRequest: RunRequest = {
@@ -221,7 +235,7 @@ export class TerraformClient implements TerraformApi {
     const response = await fetch(`${apiUrl}/runs`, {
       method: 'POST',
       body: JSON.stringify(runRequest),
-      headers: DEFAULT_CONTENT_TYPE,
+      headers: this.headers,
     });
 
     if (!response.ok) {

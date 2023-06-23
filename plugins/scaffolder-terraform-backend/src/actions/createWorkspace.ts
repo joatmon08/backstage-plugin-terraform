@@ -26,6 +26,7 @@ export const createTerraformWorkspaceAction = (options: {
     autoApply?: boolean;
     project?: string;
     queueRuns?: boolean;
+    token: string;
   }>({
     id: 'terraform:workspace:create',
     schema: {
@@ -39,6 +40,11 @@ export const createTerraformWorkspaceAction = (options: {
         ],
         type: 'object',
         properties: {
+          token: {
+            type: 'string',
+            title: 'Terraform Token',
+            description: 'Terraform token',
+          },
           organization: {
             type: 'string',
             title: 'Terraform Organization',
@@ -101,6 +107,7 @@ export const createTerraformWorkspaceAction = (options: {
     },
     async handler(ctx) {
       const {
+        token,
         organization,
         name,
         vcsSourceProvider,
@@ -117,7 +124,7 @@ export const createTerraformWorkspaceAction = (options: {
         options.configApi.getOptionalString('scaffolder.terraform.baseUrl') ||
         DEFAULT_TERRAFORM_URL;
 
-      const terraformApi = new TerraformClient(options);
+      const terraformApi = new TerraformClient(options, token);
 
       const oauthClient = await terraformApi.getOAuthClients(
         organization,

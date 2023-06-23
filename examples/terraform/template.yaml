@@ -117,6 +117,7 @@ spec:
       name: Create Terraform Project
       action: terraform:project:create
       input:
+        token: '${{ secrets.TERRAFORM_CLOUD_TOKEN }}'
         organization: ${{ parameters.organization }}
         name: ${{ parameters.project }}
 
@@ -124,18 +125,19 @@ spec:
       name: Create Terraform Workspace
       action: terraform:workspace:create
       input:
+        token: '${{ secrets.TERRAFORM_CLOUD_TOKEN }}'
         organization: ${{ parameters.organization }}
         project: ${{ steps['terraform-project'].output.name }}
         name: ${{ parameters.name }}
         vcsSourceProvider: 'github'
         vcsOwner: ${{ (parameters.repoUrl | parseRepoUrl).owner }}
         vcsRepo: ${{ (parameters.repoUrl | parseRepoUrl).repo }}
-        vcsAuthUser: ${{ (parameters.repoUrl | parseRepoUrl).owner }}
 
     - id: terraform-variables
       name: Create Terraform Variables
       action: terraform:variables:create
       input:
+        token: '${{ secrets.TERRAFORM_CLOUD_TOKEN }}'
         workspaceID: ${{ steps['terraform-workspace'].output.id }}
         variables:
           - key: second_hello
@@ -152,6 +154,7 @@ spec:
       name: Create Terraform Run
       action: terraform:run:create
       input:
+        token: '${{ secrets.TERRAFORM_CLOUD_TOKEN }}'
         workspaceID: ${{ steps['terraform-workspace'].output.id }}
 
     - id: register
