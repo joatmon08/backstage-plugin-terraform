@@ -17,7 +17,8 @@ import {
   createTerraformRunAction,
   createTerraformVariablesAction,
 } from '@internal/plugin-scaffolder-terraform-backend';
-import { authenticateToVaultWithGitHubAction, getTerraformTokenFromVaultAction } from '../../../../plugins/scaffolder-vault-backend/src';
+
+import { authenticateToVaultWithGitHubAction, getTerraformTokenFromVaultAction } from '@internal/plugin-scaffolder-vault-backend';
 
 export default async function createPlugin(
   env: PluginEnvironment,
