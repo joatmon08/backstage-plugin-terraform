@@ -16,8 +16,8 @@ kind: Component
 metadata:
   name: example-website
   annotations:
-    terraform.io/organization: hashicorp-team-da-beta
-    terraform.io/workspace: boundary-on-nomad-gcp-control-plane
+    terraform.io/organization: hashicorp-team-demo
+    terraform.io/workspace: runtime-eks
 spec:
   type: website
   lifecycle: experimental

@@ -45,11 +45,11 @@ export const BasicTable = (props: BasicTableProps) => {
         return rowData.sensitive ? (
           <Lock
             onClick={() => {
-              navigator.clipboard.writeText(rowData.value);
+              navigator.clipboard.writeText(JSON.stringify(rowData.value));
             }}
           />
         ) : (
-          rowData.value
+          String(JSON.stringify(rowData.value))
         );
       },
     },
